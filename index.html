@@ -14,9 +14,9 @@
 <meta property="og:description" content="Masaj fiyatları, çalışma saatleri, adres ve WhatsApp'tan randevu.">
 <meta property="og:url" content="https://example.com/">
 <meta property="og:image" content="https://images.unsplash.com/photo-1787651343620-8d5303006ecb?auto=format&amp;fit=crop&amp;w=1200&amp;h=630&amp;q=70">
-<meta name="theme-color" content="#F5F6F4" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0F171B" media="(prefers-color-scheme: dark)">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23132026'/%3E%3Ctext x='16' y='22.5' font-family='Arial' font-weight='700' font-size='17' text-anchor='middle' fill='%23F5F6F4'%3EI%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#F3F7F5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#101814" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%2314211B'/%3E%3Ctext x='16' y='22.5' font-family='Arial' font-weight='700' font-size='17' text-anchor='middle' fill='%23F3F7F5'%3EI%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://images.unsplash.com">
@@ -65,15 +65,15 @@
 }
 </script>
 <style>
-/* Yalnız eylemler yeşil; kimlik motifi gönderilecek mesajın kendisi (mesaj balonu). */
+/* Yalnız eylemler yeşil; nötrler tek tonda (OKLCH h 165), koyu temada yeşil daha açık ve az doygun (renk-secimi). */
 :root {
-  --zemin: #F5F6F4;
-  --yuzey: #EBEEEB;
+  --zemin: #F3F7F5;
+  --yuzey: #EAEEEC;
   --kart: #FCFDFC;
-  --murekkep: #132026;
-  --soluk: #4B5960;
-  --cizgi: #D7DDDD;
-  --kenar: #7B8A8F;
+  --murekkep: #14211B;
+  --soluk: #4C5B54;
+  --cizgi: #D8DDDA;
+  --kenar: #7D8B84;
   --eylem: #0F7A3E;
   --eylem-uzeri: #F7FBF8;
   --eylem-hover: #0B6633;
@@ -87,9 +87,9 @@
   color-scheme: light dark;
 }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --zemin: #0F171B; --yuzey: #162127; --kart: #131D22; --murekkep: #E6ECEE; --soluk: #A4B1B6; --cizgi: #25333A; --kenar: #5F7078; --eylem: #3FBF72; --eylem-uzeri: #06170D; --eylem-hover: #5BD089; --balon: #173325; color-scheme: dark; }
+  :root:not([data-theme="light"]) { --zemin: #101814; --yuzey: #17221D; --kart: #141E19; --murekkep: #E7ECEA; --soluk: #A6B2AC; --cizgi: #2C3933; --kenar: #617269; --eylem: #65B27B; --eylem-uzeri: #06170D; --eylem-hover: #7CC490; --balon: #173325; color-scheme: dark; }
 }
-:root[data-theme="dark"] { --zemin: #0F171B; --yuzey: #162127; --kart: #131D22; --murekkep: #E6ECEE; --soluk: #A4B1B6; --cizgi: #25333A; --kenar: #5F7078; --eylem: #3FBF72; --eylem-uzeri: #06170D; --eylem-hover: #5BD089; --balon: #173325; color-scheme: dark; }
+:root[data-theme="dark"] { --zemin: #101814; --yuzey: #17221D; --kart: #141E19; --murekkep: #E7ECEA; --soluk: #A6B2AC; --cizgi: #2C3933; --kenar: #617269; --eylem: #65B27B; --eylem-uzeri: #06170D; --eylem-hover: #7CC490; --balon: #173325; color-scheme: dark; }
 :root[data-theme="light"] { color-scheme: light; }
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; scroll-padding-top: 1rem; scroll-padding-bottom: calc(var(--cubuk) + 1rem); accent-color: var(--eylem); }

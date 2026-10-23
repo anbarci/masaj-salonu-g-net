@@ -313,6 +313,12 @@ address { font-style: normal; font-size: 1.125rem; font-weight: 600; }
 .cubuk.gizle { transform: translateY(115%); }
 @media (min-width: 1000px) { .cubuk { display: none; } body { padding-bottom: 0; } }
 @media (prefers-reduced-motion: reduce) { .dugme, .cubuk, .secenek, .secenek input::after, select, .ust-tel { transition: none; } .dugme:active { transform: none; } }
+.tema-simge { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; flex: none; padding: 0; border: 0; border-radius: var(--r-k, var(--r, 10px)); background: transparent; color: inherit; box-shadow: inset 0 0 0 1.5px currentColor; cursor: pointer; }
+.tema-simge[hidden] { display: none; }
+.tema-simge svg { width: 1.25rem; height: 1.25rem; }
+.tema-simge .gunes, .tema-simge[data-koyu="1"] .ay { display: none; }
+.tema-simge[data-koyu="1"] .gunes { display: block; }
+@media (hover: hover) { .tema-simge:hover { background: color-mix(in srgb, currentColor 10%, transparent); } }
 </style>
 </head>
 <body>
@@ -325,14 +331,16 @@ address { font-style: normal; font-size: 1.125rem; font-weight: 600; }
   <symbol id="i-kalkan" viewBox="0 0 256 256"><path fill="currentColor" d="M208,40H48A16,16,0,0,0,32,56v56c0,52.72,25.52,84.67,46.93,102.19,23.06,18.86,46,25.26,47,25.53a8,8,0,0,0,4.2,0c1-.27,23.91-6.67,47-25.53C198.48,196.67,224,164.72,224,112V56A16,16,0,0,0,208,40Zm0,72c0,37.07-13.66,67.16-40.6,89.42A129.3,129.3,0,0,1,128,223.62a128.25,128.25,0,0,1-38.92-21.81C61.82,179.51,48,149.3,48,112l0-56,160,0ZM82.34,141.66a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32l-56,56a8,8,0,0,1-11.32,0Z"/></symbol>
   <symbol id="i-kisi" viewBox="0 0 256 256"><path fill="currentColor" d="M117.25,157.92a60,60,0,1,0-66.5,0A95.83,95.83,0,0,0,3.53,195.63a8,8,0,1,0,13.4,8.74,80,80,0,0,1,134.14,0,8,8,0,0,0,13.4-8.74A95.83,95.83,0,0,0,117.25,157.92ZM40,108a44,44,0,1,1,44,44A44.05,44.05,0,0,1,40,108Zm210.14,98.7a8,8,0,0,1-11.07-2.33A79.83,79.83,0,0,0,172,168a8,8,0,0,1,0-16,44,44,0,1,0-16.34-84.87,8,8,0,1,1-5.94-14.85,60,60,0,0,1,55.53,105.64,95.83,95.83,0,0,1,47.22,37.71A8,8,0,0,1,250.14,206.7Z"/></symbol>
   <symbol id="i-dus" viewBox="0 0 256 256"><path fill="currentColor" d="M64,236a12,12,0,1,1-12-12A12,12,0,0,1,64,236Zm20-44a12,12,0,1,0,12,12A12,12,0,0,0,84,192Zm-64,0a12,12,0,1,0,12,12A12,12,0,0,0,20,192Zm32-32a12,12,0,1,0,12,12A12,12,0,0,0,52,160ZM256,40a8,8,0,0,1-8,8H219.31L191.46,75.86,169.8,202.65a16,16,0,0,1-27.09,8.66l-98-98a16,16,0,0,1,8.69-27.1L180.14,64.54l30.2-30.2A8,8,0,0,1,216,32h32A8,8,0,0,1,256,40ZM174.21,81.79,56,102l98,98Z"/></symbol>
+  <symbol id="i-ay" viewBox="0 0 256 256"><path fill="currentColor" d="M233.54,142.23a8,8,0,0,0-8-2,88.08,88.08,0,0,1-109.8-109.8,8,8,0,0,0-10-10,104.84,104.84,0,0,0-52.91,37A104,104,0,0,0,136,224a103.09,103.09,0,0,0,62.52-20.88,104.84,104.84,0,0,0,37-52.91A8,8,0,0,0,233.54,142.23ZM188.9,190.34A88,88,0,0,1,65.66,67.11a89,89,0,0,1,31.4-26A106,106,0,0,0,96,56,104.11,104.11,0,0,0,200,160a106,106,0,0,0,14.92-1.06A89,89,0,0,1,188.9,190.34Z"/></symbol>
+  <symbol id="i-gunes" viewBox="0 0 256 256"><path fill="currentColor" d="M120,40V16a8,8,0,0,1,16,0V40a8,8,0,0,1-16,0Zm72,88a64,64,0,1,1-64-64A64.07,64.07,0,0,1,192,128Zm-16,0a48,48,0,1,0-48,48A48.05,48.05,0,0,0,176,128ZM58.34,69.66A8,8,0,0,0,69.66,58.34l-16-16A8,8,0,0,0,42.34,53.66Zm0,116.68-16,16a8,8,0,0,0,11.32,11.32l16-16a8,8,0,0,0-11.32-11.32ZM192,72a8,8,0,0,0,5.66-2.34l16-16a8,8,0,0,0-11.32-11.32l-16,16A8,8,0,0,0,192,72Zm5.66,114.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32-11.32ZM48,128a8,8,0,0,0-8-8H16a8,8,0,0,0,0,16H40A8,8,0,0,0,48,128Zm80,80a8,8,0,0,0-8,8v24a8,8,0,0,0,16,0V216A8,8,0,0,0,128,208Zm112-88H216a8,8,0,0,0,0,16h24a8,8,0,0,0,0-16Z"/></symbol>
 </svg>
 <a class="atla" href="#icerik">İçeriğe geç</a>
-<p class="not">Ön tasarım G, rakip analizine göre. Salon adı, telefon, adres, fiyatlar, kurallar ve metinler örnektir; fotoğraflar Unsplash’ten geçici.</p>
 
 <header class="ust">
   <div class="kap ust-ic">
     <a class="logo" href="./"><b>Ilgın</b><span>Masaj Salonu, Denizli</span></a>
     <div class="ust-eylem">
+      <button class="tema-simge" type="button" data-tema-dugme="simge" aria-label="Koyu temaya geç" hidden><svg class="ay" aria-hidden="true"><use href="#i-ay"/></svg><svg class="gunes" aria-hidden="true"><use href="#i-gunes"/></svg></button>
       <a class="ust-tel" href="tel:+905550000000" aria-label="Telefonla ara: 0 555 000 00 00"><svg class="i" aria-hidden="true"><use href="#i-tel"/></svg><span>0 555 000 00 00</span></a>
       <a class="dugme dugme-ana ust-wa" href="https://wa.me/905550000000?text=Merhaba%2C%20masaj%20randevusu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp’tan yaz</a>
     </div>
@@ -357,7 +365,6 @@ address { font-style: normal; font-size: 1.125rem; font-weight: 600; }
       </div>
       <figure class="hero-foto">
         <img src="https://images.unsplash.com/photo-1787651343620-8d5303006ecb?auto=format&amp;fit=crop&amp;w=1200&amp;h=960&amp;q=70" srcset="https://images.unsplash.com/photo-1787651343620-8d5303006ecb?auto=format&amp;fit=crop&amp;w=700&amp;h=560&amp;q=70 700w, https://images.unsplash.com/photo-1787651343620-8d5303006ecb?auto=format&amp;fit=crop&amp;w=1200&amp;h=960&amp;q=70 1200w" sizes="(min-width: 960px) 520px, 100vw" alt="Bej çarşaflı masaj masası, yanında lavabo olan aydınlık masaj odası" width="1200" height="960" fetchpriority="high">
-        <figcaption>Örnek fotoğraf. Yayında salonun kendi odası yer alacak.</figcaption>
       </figure>
     </div>
   </section>
@@ -469,7 +476,6 @@ address { font-style: normal; font-size: 1.125rem; font-weight: 600; }
     <div class="kap">
       <div class="bolum-bas">
         <h2 id="salon-baslik">Salonu görün</h2>
-        <p>Örnek fotoğraflar. Yayında salonun kendi odaları yer alacak.</p>
       </div>
       <div class="galeri">
         <figure class="g1"><img src="https://images.unsplash.com/photo-1696841212541-449ca29397cc?auto=format&amp;fit=crop&amp;w=1100&amp;h=800&amp;q=70" alt="Loş odada sırtına sıcak taşlar dizilmiş, masaj masasında uzanan kadın" width="1100" height="800" loading="lazy"><figcaption>Sıcak taş masajı</figcaption></figure>
@@ -484,7 +490,7 @@ address { font-style: normal; font-size: 1.125rem; font-weight: 600; }
       <div class="yorum">
         <div>
           <h2 id="yorumlar-baslik">Gelenlerin yorumları Google’da</h2>
-          <p>Yorumları biz seçmiyoruz; hepsini salonun Google profilinde okuyabilirsiniz. Bağlantı yayında salonun profiline gidecek.</p>
+          <p>Yorumları biz seçmiyoruz; hepsini salonun Google profilinde okuyabilirsiniz.</p>
         </div>
         <a class="dugme dugme-ikinci" href="https://www.google.com/maps/search/?api=1&amp;query=Ilg%C4%B1n%20Masaj%20Salonu%20Pamukkale%20Denizli">Google yorumlarını aç</a>
       </div>
@@ -544,8 +550,7 @@ address { font-style: normal; font-size: 1.125rem; font-weight: 600; }
     <p><strong>Ilgın Masaj Salonu</strong><br>Örnek Mah. 1. Sk. No: 4, Pamukkale/Denizli<br><a href="tel:+905550000000">0 555 000 00 00</a></p>
     <p>Pazartesi-cumartesi 10.00-21.00<br>Pazar 12.00-20.00</p>
     <div class="alt-ic-son">
-      <p>Bu site çerez ve izleme kodu kullanmaz. Tema seçiminiz yalnız tarayıcınızda saklanır.</p>
-      <p><button class="tema-dugme" type="button" data-tema-dugme>Koyu temaya geç</button></p>
+      <p>Bu site çerez ve izleme kodu kullanmaz. Açık / koyu tema seçiminiz yalnız tarayıcınızda saklanır.</p>
       <p>© 2026</p>
     </div>
   </div>

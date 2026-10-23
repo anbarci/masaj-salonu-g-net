@@ -64,17 +64,26 @@
     }, { rootMargin: '-1px 0px 0px 0px' });
     document.querySelectorAll('[data-cubuk-gizle]').forEach(el => io.observe(el));
   }
-  const temaDugme = document.querySelector('[data-tema-dugme]');
-  if (temaDugme) {
+  const temaDugmeleri = document.querySelectorAll('[data-tema-dugme]');
+  if (temaDugmeleri.length) {
     const kok = document.documentElement;
-    const sistem = () => matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    const goster = () => { temaDugme.textContent = (kok.dataset.theme || sistem()) === 'dark' ? 'Açık temaya geç' : 'Koyu temaya geç'; };
+    const sorgu = matchMedia('(prefers-color-scheme: dark)');
+    const goster = () => {
+      const koyu = (kok.dataset.theme || (sorgu.matches ? 'dark' : 'light')) === 'dark';
+      const yazi = koyu ? 'Açık temaya geç' : 'Koyu temaya geç';
+      temaDugmeleri.forEach(d => {
+        if (d.dataset.temaDugme === 'simge') { d.setAttribute('aria-label', yazi); d.title = yazi; d.dataset.koyu = koyu ? '1' : '0'; }
+        else d.textContent = yazi;
+        d.hidden = false;
+      });
+    };
     goster();
-    temaDugme.addEventListener('click', () => {
-      const yeni = (kok.dataset.theme || sistem()) === 'dark' ? 'light' : 'dark';
+    sorgu.addEventListener('change', goster);
+    temaDugmeleri.forEach(d => d.addEventListener('click', () => {
+      const yeni = (kok.dataset.theme || (sorgu.matches ? 'dark' : 'light')) === 'dark' ? 'light' : 'dark';
       kok.dataset.theme = yeni;
       try { localStorage.setItem('tema', yeni); } catch (e) {}
       goster();
-    });
+    }));
   }
 })();

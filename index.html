@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>try { const t = localStorage.getItem("tema"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <title>Denizli Masaj Salonu: Fiyatlar ve WhatsApp Randevu | Ilgın</title>
 <meta name="description" content="Denizli Pamukkale'de masaj: İsveç 900 ₺, derin doku 1.100 ₺, refleksoloji 650 ₺. Fiyatlar belli, ek ücret yok. Randevu WhatsApp'tan ya da telefonla.">
 <meta name="robots" content="noindex">
@@ -35,7 +36,7 @@
       "priceRange": "650-1550 TRY",
       "currenciesAccepted": "TRY",
       "paymentAccepted": "Nakit, kredi kartı, havale",
-      "address": {"@type": "PostalAddress", "streetAddress": "Örnek Mah. Huzur Sk. No: 4", "addressLocality": "Pamukkale", "addressRegion": "Denizli", "addressCountry": "TR"},
+      "address": {"@type": "PostalAddress", "streetAddress": "Örnek Mah. 1. Sk. No: 4", "addressLocality": "Pamukkale", "addressRegion": "Denizli", "addressCountry": "TR"},
       "areaServed": {"@type": "City", "name": "Denizli"},
       "hasMap": "https://www.google.com/maps/search/?api=1&query=Ilg%C4%B1n%20Masaj%20Salonu%20Pamukkale%20Denizli",
       "openingHoursSpecification": [
@@ -64,7 +65,7 @@
 }
 </script>
 <style>
-/* Yalnız eylemler yeşil: göz nereye basacağını bilsin. */
+/* Yalnız eylemler yeşil; kimlik motifi gönderilecek mesajın kendisi (mesaj balonu). */
 :root {
   --zemin: #F5F6F4;
   --yuzey: #EBEEEB;
@@ -76,217 +77,242 @@
   --eylem: #0F7A3E;
   --eylem-uzeri: #F7FBF8;
   --eylem-hover: #0B6633;
-  --eylem-acik: #E2F0E7;
+  --balon: #E4F0E8;
   --r: 14px;
   --r-k: 10px;
   --kap: 1180px;
   --ust: 64px;
+  --cubuk: 68px;
   --ease: cubic-bezier(0.23, 1, 0.32, 1);
   color-scheme: light dark;
 }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --zemin: #0F171B; --yuzey: #162127; --kart: #131D22; --murekkep: #E6ECEE; --soluk: #A4B1B6; --cizgi: #25333A; --kenar: #5F7078; --eylem: #3FBF72; --eylem-uzeri: #06170D; --eylem-hover: #5BD089; --eylem-acik: #173325; }
+  :root:not([data-theme="light"]) { --zemin: #0F171B; --yuzey: #162127; --kart: #131D22; --murekkep: #E6ECEE; --soluk: #A4B1B6; --cizgi: #25333A; --kenar: #5F7078; --eylem: #3FBF72; --eylem-uzeri: #06170D; --eylem-hover: #5BD089; --balon: #173325; color-scheme: dark; }
 }
-:root[data-theme="dark"] { --zemin: #0F171B; --yuzey: #162127; --kart: #131D22; --murekkep: #E6ECEE; --soluk: #A4B1B6; --cizgi: #25333A; --kenar: #5F7078; --eylem: #3FBF72; --eylem-uzeri: #06170D; --eylem-hover: #5BD089; --eylem-acik: #173325; }
+:root[data-theme="dark"] { --zemin: #0F171B; --yuzey: #162127; --kart: #131D22; --murekkep: #E6ECEE; --soluk: #A4B1B6; --cizgi: #25333A; --kenar: #5F7078; --eylem: #3FBF72; --eylem-uzeri: #06170D; --eylem-hover: #5BD089; --balon: #173325; color-scheme: dark; }
+:root[data-theme="light"] { color-scheme: light; }
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--ust) + 12px); }
-body { margin: 0; background: var(--zemin); color: var(--murekkep); font-family: "Lexend", system-ui, sans-serif; font-size: 1rem; line-height: 1.65; padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
-h1, h2, h3 { margin: 0; line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 1rem; scroll-padding-bottom: calc(var(--cubuk) + 1rem); accent-color: var(--eylem); }
+@media (min-width: 1000px) { html { scroll-padding-top: calc(var(--ust) + 1rem); scroll-padding-bottom: 1rem; } }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body { margin: 0; background: var(--zemin); color: var(--murekkep); caret-color: var(--eylem); font-family: "Lexend", system-ui, sans-serif; font-size: 1rem; line-height: 1.65; padding-bottom: calc(var(--cubuk) + env(safe-area-inset-bottom)); }
+::selection { background: var(--balon); color: var(--murekkep); }
+h1, h2, h3 { margin: 0; line-height: 1.12; letter-spacing: -0.03em; text-wrap: balance; overflow-wrap: anywhere; min-width: 0; }
 h1 { font-size: clamp(1.95rem, 1.4rem + 2.1vw, 2.85rem); font-weight: 700; letter-spacing: -0.035em; }
-h2 { font-size: clamp(1.5rem, 1.2rem + 1.3vw, 2.15rem); font-weight: 650; letter-spacing: -0.03em; }
-h3 { font-size: 1.05rem; font-weight: 600; letter-spacing: -0.015em; }
+h2 { font-size: clamp(1.5rem, 1.25rem + 1.25vw, 2.125rem); font-weight: 650; }
+h3 { font-size: 1.0625rem; font-weight: 600; letter-spacing: -0.015em; }
 p { margin: 0; }
-a { color: inherit; }
+a { color: inherit; text-underline-offset: .25em; }
 img { display: block; max-width: 100%; height: auto; }
 :focus-visible { outline: 3px solid var(--eylem); outline-offset: 3px; border-radius: 4px; }
 .gizli { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-.atla { position: absolute; left: 16px; top: -100px; background: var(--eylem); color: var(--eylem-uzeri); padding: .6rem 1rem; border-radius: var(--r-k); z-index: 30; }
-.atla:focus { top: 12px; }
-.kap { max-width: var(--kap); margin-inline: auto; padding-inline: 16px; }
-@media (min-width: 768px) { .kap { padding-inline: 32px; } }
+.atla { position: absolute; left: 1rem; top: -6rem; display: inline-flex; align-items: center; min-height: 48px; background: var(--eylem); color: var(--eylem-uzeri); padding: 0 1rem; border-radius: var(--r-k); z-index: 30; }
+.atla:focus { top: .75rem; }
+.kap { max-width: var(--kap); margin-inline: auto; padding-inline: 1rem; }
+@media (min-width: 768px) { .kap { padding-inline: 2rem; } }
 svg.i { width: 1.25rem; height: 1.25rem; flex: none; }
-.not { background: var(--yuzey); color: var(--soluk); font-size: .85rem; padding: .5rem 16px; text-align: center; }
+.not { background: var(--yuzey); color: var(--soluk); font-size: .875rem; padding: .5rem 1rem; text-align: center; }
 
-.dugme { display: inline-flex; align-items: center; justify-content: center; gap: .55rem; min-height: 52px; padding: 0 1.35rem; border-radius: var(--r-k); font: inherit; font-weight: 700; text-decoration: none; white-space: nowrap; cursor: pointer; border: 0; transition: background-color .2s ease, transform .16s var(--ease); }
+.dugme { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 52px; padding: 0 1.25rem; border-radius: var(--r-k); font: inherit; font-weight: 600; text-decoration: none; text-align: center; cursor: pointer; border: 0; transition: background-color .2s ease, transform .16s var(--ease); }
 .dugme:active { transform: scale(.97); }
 .dugme-ana { background: var(--eylem); color: var(--eylem-uzeri); }
 .dugme-ikinci { background: var(--kart); color: var(--murekkep); box-shadow: inset 0 0 0 1.5px var(--murekkep); }
-.dugme-buyuk { min-height: 58px; font-size: 1.1rem; padding-inline: 1.6rem; }
 @media (hover: hover) { .dugme-ana:hover { background: var(--eylem-hover); } .dugme-ikinci:hover { background: var(--yuzey); } }
+.kisa { display: inline; } .uzun { display: none; }
+@media (min-width: 560px) { .kisa { display: none; } .uzun { display: inline; } }
 
-.durum { display: inline-flex; align-items: center; gap: .5rem; font-size: .875rem; font-weight: 600; white-space: nowrap; }
-.durum::before { content: ""; width: .55rem; height: .55rem; border-radius: 50%; background: var(--kenar); flex: none; }
+.durum { display: inline-flex; align-items: center; gap: .5rem; font-weight: 600; }
+.durum[data-acik]::before { content: ""; width: .5rem; height: .5rem; border-radius: 50%; background: var(--kenar); flex: none; }
 .durum[data-acik="1"]::before { background: var(--eylem); }
 .durum[hidden] { display: none; }
 
-.ust { position: sticky; top: 0; z-index: 20; background: var(--zemin); border-bottom: 1px solid var(--cizgi); }
-.ust-ic { display: flex; align-items: center; gap: 1rem; min-height: var(--ust); }
-.logo { text-decoration: none; line-height: 1.1; margin-right: auto; }
-.logo b { display: block; font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; }
-.logo span { display: block; font-size: .8rem; color: var(--soluk); white-space: nowrap; }
-.ust .durum { display: none; }
-.menu { display: none; }
-.ust-tel { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: var(--r-k); box-shadow: inset 0 0 0 1.5px var(--murekkep); }
-.ust-wa { display: none; }
-@media (min-width: 400px) { .ust .durum:not([hidden]) { display: inline-flex; } }
+.ust { position: relative; z-index: 20; background: var(--zemin); border-bottom: 1px solid var(--cizgi); }
+.ust-ic { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: var(--ust); }
+.logo { display: inline-flex; flex-direction: column; justify-content: center; min-height: 48px; text-decoration: none; line-height: 1.15; }
+.logo b { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.03em; }
+.logo span { font-size: .8125rem; color: var(--soluk); white-space: nowrap; }
+.ust-eylem { display: flex; align-items: center; gap: .75rem; }
+.ust-tel { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-width: 48px; min-height: 48px; border-radius: var(--r-k); box-shadow: inset 0 0 0 1.5px var(--murekkep); text-decoration: none; font-weight: 600; white-space: nowrap; transition: background-color .2s ease; }
+.ust-tel span, .ust-wa { display: none; }
+@media (hover: hover) { .ust-tel:hover { background: var(--yuzey); } }
 @media (min-width: 1000px) {
-  .menu { display: flex; gap: .25rem; list-style: none; margin: 0; padding: 0; }
-  .menu a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 .75rem; color: var(--soluk); text-decoration: none; border-radius: var(--r-k); }
-  .ust-tel { width: auto; height: auto; min-height: 48px; padding: 0 1rem; gap: .5rem; text-decoration: none; font-weight: 600; white-space: nowrap; }
-  .ust-tel::after { content: "0 555 000 00 00"; }
+  .ust { position: sticky; top: 0; }
+  .ust-tel { padding: 0 1rem; }
+  .ust-tel span { display: inline; }
   .ust-wa { display: inline-flex; min-height: 48px; }
 }
-@media (min-width: 1000px) and (hover: hover) { .menu a:hover { color: var(--murekkep); background: var(--yuzey); } }
 
-.hero { padding-block: 1.75rem clamp(3rem, 6vw, 4.5rem); }
+.hero { padding-block: 1.5rem 3rem; }
 .hero-ic { display: grid; gap: 2rem; }
-.hero-metin { display: grid; gap: 1.1rem; align-content: center; }
-.hero-alt { font-size: 1.15rem; color: var(--soluk); max-width: 44ch; }
-.olgular { list-style: none; margin: .25rem 0 0; padding: 0; display: grid; gap: .65rem; }
-.olgular li { display: grid; grid-template-columns: auto 1fr; gap: 0 .75rem; align-items: center; }
+.hero-metin { display: grid; gap: 1rem; align-content: center; min-width: 0; }
+.hero-alt { font-size: 1.125rem; color: var(--soluk); max-width: 46ch; }
+.olgular { list-style: none; margin: .25rem 0 0; padding: 0; display: grid; gap: .75rem; }
+.olgular li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0 .75rem; align-items: center; }
 .olgular svg { grid-row: 1 / span 2; width: 1.5rem; height: 1.5rem; color: var(--soluk); }
 .olgular b { font-weight: 700; }
-.olgular .durum { font-size: 1rem; font-weight: 700; }
-.olgular .durum:not([data-acik])::before { display: none; }
-.olgular span { color: var(--soluk); font-size: .95rem; }
-.eylem-satir { display: grid; gap: .65rem; margin-top: .5rem; }
-@media (min-width: 560px) { .eylem-satir { display: flex; flex-wrap: wrap; } }
-.hero-foto { margin: 0; }
+.olgular span { color: var(--soluk); font-size: .9375rem; }
+.eylem-satir { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .5rem; }
+.eylem-satir .dugme { min-height: 56px; padding-inline: .75rem; flex: 1 1 auto; }
+.eylem-satir .dugme-ana { flex-grow: 2; }
+@media (min-width: 560px) { .eylem-satir { gap: .75rem; } .eylem-satir .dugme { flex: 0 1 auto; padding-inline: 1.5rem; font-size: 1.0625rem; } }
+.hero-foto { margin: 0; min-width: 0; }
 .hero-foto img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--r); background: var(--yuzey); }
-.hero-foto figcaption { color: var(--soluk); font-size: .9rem; margin-top: .5rem; }
+.hero-foto figcaption { color: var(--soluk); font-size: .875rem; margin-top: .5rem; }
 @media (min-width: 960px) {
-  .hero { padding-top: 3rem; }
-  .hero-ic { grid-template-columns: 1.25fr 1fr; gap: 3.5rem; }
+  .hero { padding-block: 3rem 4.5rem; }
+  .hero-ic { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 3.5rem; }
   .hero-foto img { aspect-ratio: 5 / 4; }
 }
 
-.bolum { padding-block: clamp(3rem, 6vw, 5rem); }
 .bolum-ton { background: var(--yuzey); }
-.bolum-bas { display: grid; gap: .7rem; margin-bottom: 2rem; max-width: 60ch; }
+.bolum-bas { display: grid; gap: .75rem; margin-bottom: 2rem; max-width: 60ch; }
 .bolum-bas p { color: var(--soluk); }
 
-.ilke-ic { display: grid; gap: 2rem; }
-.ilkeler { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.5rem; }
-.ilkeler li { display: grid; grid-template-columns: auto 1fr; gap: .3rem 1rem; }
-.ilkeler svg { grid-row: 1 / span 2; width: 2rem; height: 2rem; color: var(--murekkep); }
-.ilkeler p { color: var(--soluk); grid-column: 2; }
-@media (min-width: 700px) { .ilkeler { grid-template-columns: 1fr 1fr; gap: 2rem 2.5rem; } }
-@media (min-width: 1000px) { .ilke-ic { grid-template-columns: 1fr 2fr; gap: 4rem; } .ilke-ic .bolum-bas { margin: 0; } }
+.kurallar { padding-block: 2.5rem; }
+.kural-ic { display: grid; gap: 2rem; }
+.kural-ana { display: grid; gap: 1.25rem; align-content: start; }
+.ana-kural { font-size: clamp(1.25rem, 1.1rem + .6vw, 1.5rem); line-height: 1.45; letter-spacing: -0.02em; max-width: 34ch; }
+.ana-kural strong { font-weight: 700; }
+.kural-liste { margin: 0; display: grid; }
+.kural-liste div { padding-block: 1rem; border-top: 1px solid var(--kenar); display: grid; gap: .25rem; }
+.kural-liste div:last-child { border-bottom: 1px solid var(--kenar); }
+.kural-liste dt { font-weight: 600; }
+.kural-liste dd { margin: 0; color: var(--soluk); }
+@media (min-width: 960px) { .kurallar { padding-block: 3.5rem; } .kural-ic { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 4rem; align-items: center; } }
 
-.secici { display: grid; gap: 1.5rem; border: 0; margin: 0; padding: 0; min-width: 0; }
-.secici legend { padding: 0; margin-bottom: 1rem; font-weight: 700; }
-.secenekler { display: grid; gap: .6rem; }
-@media (min-width: 600px) { .secenekler { grid-template-columns: 1fr 1fr; } }
-.secenek { position: relative; display: flex; align-items: center; gap: .8rem; min-height: 56px; padding: .75rem 1rem; border-radius: var(--r-k); background: var(--kart); box-shadow: inset 0 0 0 1.5px var(--cizgi); cursor: pointer; transition: box-shadow .15s ease, background-color .15s ease; }
+.secim-bolum { padding-block: 3.5rem 3rem; }
+.secici { display: grid; gap: 1rem; border: 0; margin: 0; padding: 0; min-width: 0; }
+.secici legend { padding: 0; margin-bottom: 1rem; font-weight: 600; }
+.secenekler { display: grid; gap: .5rem; }
+@media (min-width: 600px) { .secenekler { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+.secenek { display: flex; align-items: center; gap: .75rem; min-height: 56px; padding: .75rem 1rem; border-radius: var(--r-k); background: var(--kart); box-shadow: inset 0 0 0 1px var(--cizgi); cursor: pointer; transition: box-shadow .15s ease, background-color .15s ease; }
 .secenek input { appearance: none; width: 1.25rem; height: 1.25rem; margin: 0; border-radius: 50%; border: 2px solid var(--kenar); flex: none; display: grid; place-items: center; }
-.secenek input::after { content: ""; width: .6rem; height: .6rem; border-radius: 50%; background: var(--eylem); transform: scale(0); transition: transform .15s var(--ease); }
-.secenek input:checked { border-color: var(--eylem); }
+.secenek input::after { content: ""; width: .5rem; height: .5rem; border-radius: 50%; background: var(--murekkep); transform: scale(0); transition: transform .15s var(--ease); }
+.secenek input:checked { border-color: var(--murekkep); }
 .secenek input:checked::after { transform: scale(1); }
 .secenek input:focus-visible { outline: 3px solid var(--eylem); outline-offset: 2px; }
-.secenek:has(input:checked) { background: var(--eylem-acik); box-shadow: inset 0 0 0 2px var(--eylem); }
-.oneriler { display: grid; }
-.oneri { display: none; gap: .6rem; padding: 1.5rem; border-radius: var(--r); background: var(--kart); box-shadow: inset 0 0 0 1.5px var(--cizgi); align-content: start; }
-.oneri small { color: var(--soluk); font-size: .9rem; }
+.secenek:has(input:checked) { background: var(--yuzey); box-shadow: inset 0 0 0 2px var(--murekkep); }
+@media (hover: hover) { .secenek:hover { box-shadow: inset 0 0 0 1px var(--kenar); } .secenek:has(input:checked):hover { box-shadow: inset 0 0 0 2px var(--murekkep); } }
+.oneriler { display: grid; min-width: 0; }
+.oneri { display: none; gap: .75rem; padding: 1.5rem; border-radius: var(--r); background: var(--kart); box-shadow: inset 0 0 0 1px var(--cizgi); align-content: start; }
+.oneri small { color: var(--soluk); font-size: .875rem; }
 .oneri h3 { font-size: 1.5rem; }
-.oneri .fiyat-satir { font-size: 1.15rem; font-variant-numeric: tabular-nums; }
-.oneri .fiyat-satir b { font-weight: 700; }
-.oneri p { color: var(--soluk); }
-.oneri .dugme { justify-self: start; margin-top: .4rem; }
+.fiyat-satir { font-size: 1.125rem; font-variant-numeric: tabular-nums; }
+.fiyat-satir b { font-weight: 700; }
+.oneri > p:not(.balon, .fiyat-satir) { color: var(--soluk); }
+.oneri .dugme { justify-self: start; }
 .secim:has(#s-rahat:checked) .o-rahat, .secim:has(#s-agri:checked) .o-agri, .secim:has(#s-spor:checked) .o-spor,
 .secim:has(#s-ayak:checked) .o-ayak, .secim:has(#s-usu:checked) .o-usu, .secim:has(#s-koku:checked) .o-koku { display: grid; }
 @supports not selector(:has(*)) { .oneri { display: grid; } .oneriler { gap: 1rem; } }
-@media (min-width: 960px) { .secim { display: grid; grid-template-columns: 1.4fr 1fr; gap: 2.5rem; align-items: start; } .oneriler { position: sticky; top: calc(var(--ust) + 24px); } }
+@media (min-width: 960px) { .secim { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 2.5rem; align-items: start; } .oneriler { position: sticky; top: calc(var(--ust) + 1.5rem); } }
 @media (prefers-reduced-motion: no-preference) { .oneri { animation: belir .3s var(--ease); } @keyframes belir { from { opacity: 0; transform: translateY(6px); } } }
 
+.balon { position: relative; justify-self: start; max-width: 36ch; background: var(--balon); color: var(--murekkep); padding: .75rem 1rem; border-radius: var(--r) var(--r) var(--r) .25rem; font-size: .9375rem; line-height: 1.5; white-space: pre-line; }
+.balon-ad { display: block; font-size: .8125rem; color: var(--soluk); margin-bottom: .25rem; }
+
+.fiyat-bolum { padding-block: 3rem; }
 .fiyatlar { width: 100%; border-collapse: collapse; background: var(--kart); border-radius: var(--r); overflow: hidden; box-shadow: inset 0 0 0 1px var(--cizgi); }
-.fiyatlar caption { text-align: left; color: var(--soluk); caption-side: bottom; padding-top: 1rem; }
-.fiyatlar thead th { text-align: left; font-size: .9rem; color: var(--soluk); font-weight: 700; padding: 1rem 1.25rem .6rem; }
+.fiyatlar thead th { text-align: left; font-size: .875rem; color: var(--soluk); font-weight: 600; padding: 1rem 1.25rem .5rem; }
 .fiyatlar tbody th, .fiyatlar td { padding: 1rem 1.25rem; border-top: 1px solid var(--cizgi); vertical-align: top; text-align: left; font-weight: 400; }
-.fiyatlar tbody th h3 { margin-bottom: .2rem; }
-.fiyatlar tbody th p { color: var(--soluk); font-size: .95rem; max-width: 48ch; }
+.fiyatlar tbody th h3 { margin-bottom: .25rem; }
+.fiyatlar tbody th p { color: var(--soluk); font-size: .9375rem; max-width: 48ch; }
 .fiyatlar .sayi { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
 .fiyatlar td.sayi { font-weight: 700; }
-.fiyatlar td.git { text-align: right; padding-block: .55rem; vertical-align: middle; }
-.yaz { display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; font-weight: 700; color: var(--eylem); text-underline-offset: 3px; }
-:root[data-theme="dark"] .yaz { color: var(--eylem); }
-@media (max-width: 559px) {
+.fiyatlar td.git { text-align: right; padding-block: .5rem; vertical-align: middle; }
+.yaz { display: inline-flex; align-items: center; gap: .5rem; min-height: 44px; font-weight: 600; text-decoration-thickness: 1px; }
+@media (min-width: 700px) { .yaz { white-space: nowrap; } }
+@media (hover: hover) { .yaz:hover { text-decoration-thickness: 2px; } }
+@media (max-width: 699px) {
   .fiyatlar thead { display: none; }
-  .fiyatlar tbody tr { display: grid; grid-template-columns: 1fr auto; border-top: 1px solid var(--cizgi); padding: 1rem 1rem .5rem; }
+  .fiyatlar tbody tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; border-top: 1px solid var(--cizgi); padding: 1rem 1rem .5rem; }
+  .fiyatlar tbody tr:first-child { border-top: 0; }
   .fiyatlar tbody th, .fiyatlar td { border: 0; padding: 0; }
   .fiyatlar tbody th { grid-column: 1 / -1; }
-  .fiyatlar td.sure { color: var(--soluk); padding-top: .4rem; }
-  .fiyatlar td.sayi { padding-top: .4rem; }
-  .fiyatlar .sure { text-align: left; }
-  .fiyatlar td.git { grid-column: 1 / -1; text-align: left; padding-top: .3rem; }
+  .fiyatlar td.sure { color: var(--soluk); padding-top: .5rem; text-align: left; }
+  .fiyatlar td.sayi { padding-top: .5rem; }
+  .fiyatlar td.git { grid-column: 1 / -1; text-align: left; padding-top: .25rem; }
 }
-.dahil { margin-top: 1.25rem; display: flex; gap: .75rem; align-items: flex-start; color: var(--soluk); max-width: 70ch; }
-.dahil svg { margin-top: .15rem; color: var(--murekkep); }
+.dahil { margin-top: 1.25rem; color: var(--soluk); max-width: 70ch; }
+.dahil strong { color: var(--murekkep); }
 
+.randevu-bolum { padding-block: 4rem; }
 .randevu-ic { display: grid; gap: 2.5rem; }
-@media (min-width: 960px) { .randevu-ic { grid-template-columns: 1fr 1.15fr; gap: 4rem; align-items: start; } }
-.adimlar { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.5rem; counter-reset: adim; }
-.adimlar li { display: grid; grid-template-columns: 2.75rem 1fr; gap: .2rem 1rem; counter-increment: adim; }
-.adimlar li::before { content: counter(adim); grid-row: 1 / span 2; width: 2.75rem; height: 2.75rem; border-radius: 50%; display: grid; place-items: center; font-weight: 700; background: var(--murekkep); color: var(--zemin); }
-.adimlar p { color: var(--soluk); grid-column: 2; }
+@media (min-width: 960px) { .randevu-bolum { padding-block: 5rem; } .randevu-ic { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 4rem; align-items: start; } }
+.adimlar { list-style: none; margin: 0; padding: 0; display: grid; }
+.adimlar li { display: flex; flex-wrap: wrap; gap: .25rem 1.5rem; padding-block: 1rem; border-top: 1px solid var(--cizgi); }
+.adimlar b { flex: 0 0 8rem; }
+.adimlar p { flex: 1 1 16rem; }
+.adimlar li:last-child { border-bottom: 1px solid var(--cizgi); }
+.adimlar b { font-weight: 600; }
+.adimlar p { color: var(--soluk); }
 .randevu-kart { background: var(--kart); border-radius: var(--r); box-shadow: inset 0 0 0 1px var(--cizgi); padding: clamp(1.25rem, 3vw, 2rem); display: grid; gap: 1.25rem; }
 .form { display: grid; gap: 1rem; }
-@media (min-width: 560px) { .form { grid-template-columns: 1fr 1fr; } .genis { grid-column: 1 / -1; } }
-.alan { display: grid; gap: .35rem; }
-.alan label { font-weight: 700; font-size: .95rem; }
-select { font: inherit; color: var(--murekkep); background: var(--zemin); border: 1.5px solid var(--kenar); border-radius: var(--r-k); min-height: 52px; padding: 0 2.4rem 0 .9rem; width: 100%; appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--soluk) 50%), linear-gradient(135deg, var(--soluk) 50%, transparent 50%); background-position: right 1.15rem center, right .8rem center; background-size: .35rem .35rem; background-repeat: no-repeat; }
-.onizleme { display: grid; gap: .5rem; }
-.onizleme b { font-size: .95rem; }
-.onizleme output { white-space: pre-line; color: var(--soluk); background: var(--zemin); border-radius: var(--r-k); padding: .9rem 1rem; font-size: .95rem; }
+@media (min-width: 560px) { .form { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .genis { grid-column: 1 / -1; } }
+.alan { display: grid; gap: .25rem; }
+.alan label { font-weight: 600; font-size: .9375rem; }
+select { font: inherit; color: var(--murekkep); background: var(--zemin); border: 1.5px solid var(--kenar); border-radius: var(--r-k); height: 52px; padding: 0 2.5rem 0 1rem; width: 100%; appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--soluk) 50%), linear-gradient(135deg, var(--soluk) 50%, transparent 50%); background-position: right 1.25rem center, right .75rem center; background-size: .375rem .375rem; background-repeat: no-repeat; transition: border-color .15s ease; outline: 3px solid transparent; outline-offset: 1px; }
+@media (hover: hover) { select:hover { border-color: var(--murekkep); } }
+select:focus-visible { outline-color: var(--eylem); }
+.randevu-kart .balon { max-width: none; justify-self: stretch; }
 .randevu-kart .dugme { width: 100%; }
-.kucuk { color: var(--soluk); font-size: .95rem; text-align: center; }
-.kucuk a { color: var(--murekkep); font-weight: 700; white-space: nowrap; }
+.kucuk { color: var(--soluk); font-size: .9375rem; text-align: center; }
+.kucuk a { color: var(--murekkep); font-weight: 600; white-space: nowrap; }
 
-.galeri { display: grid; gap: 1rem; grid-template-columns: 1fr 1fr; }
-.galeri figure { margin: 0; }
+.salon-bolum { padding-block: 3rem; }
+.galeri { display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.galeri figure { margin: 0; min-width: 0; }
 .galeri .g1 { grid-column: 1 / -1; }
 .galeri img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--r); background: var(--yuzey); }
 .galeri .g1 img { aspect-ratio: 16 / 9; }
-.galeri figcaption { color: var(--soluk); font-size: .9rem; margin-top: .45rem; }
-@media (min-width: 900px) { .galeri { grid-template-columns: 2fr 1fr 1fr; } .galeri .g1 { grid-column: auto; } .galeri .g1 img, .galeri img { aspect-ratio: 4 / 5; } .galeri .g1 img { aspect-ratio: auto; height: 100%; contain: size; } }
+.galeri figcaption { color: var(--soluk); font-size: .875rem; margin-top: .5rem; }
+@media (min-width: 900px) { .galeri { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr); } .galeri .g1 { grid-column: auto; } .galeri img { aspect-ratio: 4 / 5; } .galeri .g1 img { aspect-ratio: auto; height: 100%; contain: size; } }
 
+.yorum-bolum { padding-block: 2rem; }
 .yorum { display: grid; gap: 1rem; align-items: center; padding: 1.5rem; border-radius: var(--r); box-shadow: inset 0 0 0 1px var(--cizgi); background: var(--kart); }
-.yorum svg { width: 2rem; height: 2rem; }
-.yorum p { color: var(--soluk); }
-@media (min-width: 760px) { .yorum { grid-template-columns: auto 1fr auto; gap: 1.5rem; } }
+.yorum p { color: var(--soluk); max-width: 60ch; }
+.yorum h2 { font-size: clamp(1.25rem, 1.1rem + .6vw, 1.5rem); margin-bottom: .25rem; }
+@media (min-width: 760px) { .yorum { grid-template-columns: minmax(0, 1fr) auto; gap: 2rem; padding: 1.5rem 2rem; } }
 
+.sorular-bolum { padding-block: 3.5rem; }
 .sorular { display: grid; gap: 1.75rem; }
-@media (min-width: 760px) { .sorular { grid-template-columns: 1fr 1fr; gap: 2.25rem 4rem; } }
-.soru { display: grid; gap: .4rem; }
+@media (min-width: 760px) { .sorular { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2.25rem 4rem; } }
+.soru { display: grid; gap: .5rem; }
 .soru p { color: var(--soluk); max-width: 56ch; }
 
+.konum-bolum { padding-block: 3rem; }
 .konum { display: grid; gap: 2.5rem; }
-@media (min-width: 900px) { .konum { grid-template-columns: 1fr 1fr; gap: 4rem; } }
-.konum-metin { display: grid; gap: 1.1rem; align-content: start; }
-address { font-style: normal; font-size: 1.2rem; font-weight: 700; }
+@media (min-width: 900px) { .konum { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 4rem; } }
+.konum-metin { display: grid; gap: 1rem; align-content: start; }
+address { font-style: normal; font-size: 1.125rem; font-weight: 600; }
 .ulasim { margin: 0; display: grid; gap: .5rem; }
-.ulasim div { display: grid; grid-template-columns: 7.5rem 1fr; gap: 1rem; }
-.ulasim dt { font-weight: 700; }
+.ulasim div { display: flex; flex-wrap: wrap; gap: 0 1rem; }
+.ulasim dt { flex: 0 0 7.5rem; }
+.ulasim dd { flex: 1 1 12rem; }
+.ulasim dt { font-weight: 600; }
 .ulasim dd { margin: 0; color: var(--soluk); }
-.konum-eylem { display: flex; flex-wrap: wrap; gap: .65rem; align-items: center; }
-.yol { display: inline-flex; align-items: center; gap: .45rem; min-height: 48px; font-weight: 700; text-underline-offset: 3px; padding-inline: .25rem; }
+.konum-eylem { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
+.yol { display: inline-flex; align-items: center; gap: .5rem; min-height: 48px; font-weight: 600; padding-inline: .25rem; }
 .saatler { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
-.saatler th, .saatler td { text-align: left; padding: .7rem 0; border-bottom: 1px solid var(--cizgi); font-weight: 400; }
+.saatler th, .saatler td { text-align: left; padding: .75rem 0; border-bottom: 1px solid var(--cizgi); font-weight: 400; }
 .saatler td { text-align: right; }
 .saatler tr:last-child > * { border-bottom: 0; }
 .saatler .bugun > * { font-weight: 700; }
-.saatler .bugun span { color: var(--eylem); font-size: .85rem; }
+.saatler .bugun span { font-size: .875rem; font-weight: 600; color: var(--soluk); }
 
-.alt { border-top: 1px solid var(--cizgi); padding-block: 2rem 2.5rem; color: var(--soluk); font-size: .95rem; }
+.alt { border-top: 1px solid var(--cizgi); padding-block: 2rem 2.5rem; color: var(--soluk); font-size: .9375rem; }
 .alt-ic { display: grid; gap: 1.25rem; }
 .alt strong { color: var(--murekkep); }
-@media (min-width: 760px) { .alt-ic { grid-template-columns: 1.5fr 1fr 1fr; gap: 2rem; } }
+.alt-ic-son { display: grid; gap: .75rem; align-content: start; }
+.tema-dugme { font: inherit; color: var(--murekkep); background: transparent; border: 1px solid var(--kenar); border-radius: var(--r-k); min-height: 44px; padding: 0 1rem; cursor: pointer; justify-self: start; }
+@media (hover: hover) { .tema-dugme:hover { background: var(--yuzey); } }
+@media (min-width: 760px) { .alt-ic { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr); gap: 2rem; } }
 
-.cubuk { position: fixed; inset: auto 0 0 0; z-index: 20; display: grid; grid-template-columns: 1.4fr 1fr; gap: .5rem .6rem; padding: .55rem 16px calc(.6rem + env(safe-area-inset-bottom)); background: var(--zemin); border-top: 1px solid var(--cizgi); box-shadow: 0 -8px 24px -16px rgb(19 32 38 / .35); transition: transform .25s var(--ease); }
-.cubuk .durum { grid-column: 1 / -1; font-size: .8rem; justify-self: center; }
-.cubuk .dugme { min-height: 50px; padding-inline: .75rem; }
+.cubuk { position: fixed; inset: auto 0 0 0; z-index: 20; display: flex; flex-wrap: wrap; gap: .5rem; padding: .5rem 1rem calc(.5rem + env(safe-area-inset-bottom)); background: var(--zemin); border-top: 1px solid var(--cizgi); transition: transform .25s var(--ease); }
+.cubuk .dugme { min-height: 52px; padding-inline: 1rem; flex: 1 1 auto; }
+.cubuk .dugme-ana { flex-grow: 2; }
 .cubuk.gizle { transform: translateY(115%); }
 @media (min-width: 1000px) { .cubuk { display: none; } body { padding-bottom: 0; } }
-@media (prefers-reduced-motion: reduce) { .dugme, .cubuk, .secenek, .secenek input::after { transition: none; } .dugme:active { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .dugme, .cubuk, .secenek, .secenek input::after, select, .ust-tel { transition: none; } .dugme:active { transform: none; } }
 </style>
 </head>
 <body>
@@ -299,25 +325,17 @@ address { font-style: normal; font-size: 1.2rem; font-weight: 700; }
   <symbol id="i-kalkan" viewBox="0 0 256 256"><path fill="currentColor" d="M208,40H48A16,16,0,0,0,32,56v56c0,52.72,25.52,84.67,46.93,102.19,23.06,18.86,46,25.26,47,25.53a8,8,0,0,0,4.2,0c1-.27,23.91-6.67,47-25.53C198.48,196.67,224,164.72,224,112V56A16,16,0,0,0,208,40Zm0,72c0,37.07-13.66,67.16-40.6,89.42A129.3,129.3,0,0,1,128,223.62a128.25,128.25,0,0,1-38.92-21.81C61.82,179.51,48,149.3,48,112l0-56,160,0ZM82.34,141.66a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32l-56,56a8,8,0,0,1-11.32,0Z"/></symbol>
   <symbol id="i-kisi" viewBox="0 0 256 256"><path fill="currentColor" d="M117.25,157.92a60,60,0,1,0-66.5,0A95.83,95.83,0,0,0,3.53,195.63a8,8,0,1,0,13.4,8.74,80,80,0,0,1,134.14,0,8,8,0,0,0,13.4-8.74A95.83,95.83,0,0,0,117.25,157.92ZM40,108a44,44,0,1,1,44,44A44.05,44.05,0,0,1,40,108Zm210.14,98.7a8,8,0,0,1-11.07-2.33A79.83,79.83,0,0,0,172,168a8,8,0,0,1,0-16,44,44,0,1,0-16.34-84.87,8,8,0,1,1-5.94-14.85,60,60,0,0,1,55.53,105.64,95.83,95.83,0,0,1,47.22,37.71A8,8,0,0,1,250.14,206.7Z"/></symbol>
   <symbol id="i-dus" viewBox="0 0 256 256"><path fill="currentColor" d="M64,236a12,12,0,1,1-12-12A12,12,0,0,1,64,236Zm20-44a12,12,0,1,0,12,12A12,12,0,0,0,84,192Zm-64,0a12,12,0,1,0,12,12A12,12,0,0,0,20,192Zm32-32a12,12,0,1,0,12,12A12,12,0,0,0,52,160ZM256,40a8,8,0,0,1-8,8H219.31L191.46,75.86,169.8,202.65a16,16,0,0,1-27.09,8.66l-98-98a16,16,0,0,1,8.69-27.1L180.14,64.54l30.2-30.2A8,8,0,0,1,216,32h32A8,8,0,0,1,256,40ZM174.21,81.79,56,102l98,98Z"/></symbol>
-  <symbol id="i-yildiz" viewBox="0 0 256 256"><path fill="currentColor" d="M239.18,97.26A16.38,16.38,0,0,0,224.92,86l-59-4.76L143.14,26.15a16.36,16.36,0,0,0-30.27,0L90.11,81.23,31.08,86a16.46,16.46,0,0,0-9.37,28.86l45,38.83L53,211.75a16.38,16.38,0,0,0,24.5,17.82L128,198.49l50.53,31.08A16.4,16.4,0,0,0,203,211.75l-13.76-58.07,45-38.83A16.43,16.43,0,0,0,239.18,97.26Zm-15.34,5.47-48.7,42a8,8,0,0,0-2.56,7.91l14.88,62.8a.37.37,0,0,1-.17.48c-.18.14-.23.11-.38,0l-54.72-33.65a8,8,0,0,0-8.38,0L69.09,215.94c-.15.09-.19.12-.38,0a.37.37,0,0,1-.17-.48l14.88-62.8a8,8,0,0,0-2.56-7.91l-48.7-42c-.12-.1-.23-.19-.13-.5s.18-.27.33-.29l63.92-5.16A8,8,0,0,0,103,91.86l24.62-59.61c.08-.17.11-.25.35-.25s.27.08.35.25L153,91.86a8,8,0,0,0,6.75,4.92l63.92,5.16c.15,0,.24,0,.33.29S224,102.63,223.84,102.73Z"/></symbol>
 </svg>
 <a class="atla" href="#icerik">İçeriğe geç</a>
-<p class="not">Ön tasarım G, rakip analizine göre. Salon adı, telefon, adres, fiyatlar, kurallar ve metinler örnektir; fotoğraflar Unsplash'ten geçici.</p>
+<p class="not">Ön tasarım G, rakip analizine göre. Salon adı, telefon, adres, fiyatlar, kurallar ve metinler örnektir; fotoğraflar Unsplash’ten geçici.</p>
 
 <header class="ust">
   <div class="kap ust-ic">
     <a class="logo" href="./"><b>Ilgın</b><span>Masaj Salonu, Denizli</span></a>
-    <p class="durum" data-durum hidden></p>
-    <nav aria-label="Sayfa bölümleri">
-      <ul class="menu">
-        <li><a href="#fiyatlar">Fiyatlar</a></li>
-        <li><a href="#randevu">Randevu</a></li>
-        <li><a href="#sorular">Sorular</a></li>
-        <li><a href="#konum">Konum</a></li>
-      </ul>
-    </nav>
-    <a class="ust-tel" href="tel:+905550000000" aria-label="Telefonla ara: 0 555 000 00 00"><svg class="i" aria-hidden="true"><use href="#i-tel"/></svg></a>
-    <a class="dugme dugme-ana ust-wa" href="https://wa.me/905550000000?text=Merhaba%2C%20masaj%20randevusu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp'tan yaz</a>
+    <div class="ust-eylem">
+      <a class="ust-tel" href="tel:+905550000000" aria-label="Telefonla ara: 0 555 000 00 00"><svg class="i" aria-hidden="true"><use href="#i-tel"/></svg><span>0 555 000 00 00</span></a>
+      <a class="dugme dugme-ana ust-wa" href="https://wa.me/905550000000?text=Merhaba%2C%20masaj%20randevusu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp’tan yaz</a>
+    </div>
   </div>
 </header>
 
@@ -325,71 +343,70 @@ address { font-style: normal; font-size: 1.2rem; font-weight: 700; }
   <section class="hero" aria-labelledby="baslik" data-cubuk-gizle>
     <div class="kap hero-ic">
       <div class="hero-metin">
-        <h1 id="baslik">Denizli'de masaj: fiyatı belli, randevusu tek mesaj</h1>
-        <p class="hero-alt">İsveç, derin doku, sıcak taş, aromaterapi, sporcu masajı ve refleksoloji. Pamukkale'de, ayrı ve duşlu odalarda.</p>
+        <h1 id="baslik">Denizli’de masaj: fiyatı belli, randevusu tek mesaj</h1>
+        <p class="hero-alt">İsveç, derin doku, sıcak taş, aromaterapi, sporcu masajı ve refleksoloji. Pamukkale’de, ayrı ve duşlu odalarda.</p>
         <ul class="olgular">
-          <li><svg aria-hidden="true"><use href="#i-etiket"/></svg><b>650 ₺'den başlayan fiyatlar</b><span>30 ile 80 dakika arası seanslar</span></li>
+          <li><svg aria-hidden="true"><use href="#i-etiket"/></svg><b>650 ₺’den başlayan fiyatlar</b><span>30 ile 80 dakika arası seanslar</span></li>
           <li><svg aria-hidden="true"><use href="#i-saat"/></svg><b class="durum" data-durum>Her gün açık</b><span>Pazartesi-cumartesi 10.00-21.00, pazar 12.00-20.00</span></li>
-          <li><svg aria-hidden="true"><use href="#i-yer"/></svg><b>Pamukkale, Denizli</b><span>Örnek Mah. Huzur Sk. No: 4, önünde park yeri</span></li>
+          <li><svg aria-hidden="true"><use href="#i-yer"/></svg><b>Pamukkale, Denizli</b><span>Örnek Mah. 1. Sk. No: 4, önünde park yeri</span></li>
         </ul>
         <div class="eylem-satir">
-          <a class="dugme dugme-ana dugme-buyuk" href="https://wa.me/905550000000?text=Merhaba%2C%20masaj%20randevusu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp'tan yaz</a>
-          <a class="dugme dugme-ikinci dugme-buyuk" href="tel:+905550000000" aria-label="Telefonla ara: 0 555 000 00 00"><svg class="i" aria-hidden="true"><use href="#i-tel"/></svg>0 555 000 00 00</a>
+          <a class="dugme dugme-ana" href="https://wa.me/905550000000?text=Merhaba%2C%20masaj%20randevusu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp’tan yaz</a>
+          <a class="dugme dugme-ikinci" href="tel:+905550000000" aria-label="Telefonla ara: 0 555 000 00 00"><svg class="i" aria-hidden="true"><use href="#i-tel"/></svg><span class="kisa">Ara</span><span class="uzun">0 555 000 00 00</span></a>
         </div>
       </div>
       <figure class="hero-foto">
         <img src="https://images.unsplash.com/photo-1787651343620-8d5303006ecb?auto=format&amp;fit=crop&amp;w=1200&amp;h=960&amp;q=70" srcset="https://images.unsplash.com/photo-1787651343620-8d5303006ecb?auto=format&amp;fit=crop&amp;w=700&amp;h=560&amp;q=70 700w, https://images.unsplash.com/photo-1787651343620-8d5303006ecb?auto=format&amp;fit=crop&amp;w=1200&amp;h=960&amp;q=70 1200w" sizes="(min-width: 960px) 520px, 100vw" alt="Bej çarşaflı masaj masası, yanında lavabo olan aydınlık masaj odası" width="1200" height="960" fetchpriority="high">
-        <figcaption>Masaj odalarımızdan biri. Her odada duş var.</figcaption>
+        <figcaption>Örnek fotoğraf. Yayında salonun kendi odası yer alacak.</figcaption>
       </figure>
     </div>
   </section>
 
-  <section class="bolum bolum-ton" id="kurallar" aria-labelledby="kurallar-baslik">
-    <div class="kap ilke-ic">
-      <div class="bolum-bas">
+  <section class="bolum-ton kurallar" id="kurallar" aria-labelledby="kurallar-baslik">
+    <div class="kap kural-ic">
+      <div class="kural-ana">
         <h2 id="kurallar-baslik">Burada nasıl çalışıyoruz</h2>
-        <p>Gelmeden önce bilmek istediğiniz dört şey.</p>
+        <p class="ana-kural"><strong>Yalnız profesyonel masaj yapıyoruz.</strong> Fiyat listesindeki masajlar dışında hizmetimiz yok; uygunsuz bir talepte seansı bitiriyoruz.</p>
       </div>
-      <ul class="ilkeler">
-        <li><svg aria-hidden="true"><use href="#i-kalkan"/></svg><h3>Yalnız profesyonel masaj</h3><p>Fiyat listesindeki masajlar dışında hizmet yok. Uygunsuz bir talep olursa seans sona erer.</p></li>
-        <li><svg aria-hidden="true"><use href="#i-kisi"/></svg><h3>Terapisti siz seçersiniz</h3><p>Kadın ya da erkek terapist. Tercihinizi mesajda yazmanız yeterli.</p></li>
-        <li><svg aria-hidden="true"><use href="#i-etiket"/></svg><h3>Fiyat baştan belli</h3><p>Listedeki fiyatı ödersiniz. Ek ücret, paket dayatması yok.</p></li>
-        <li><svg aria-hidden="true"><use href="#i-dus"/></svg><h3>Ayrı ve temiz oda</h3><p>Her odada duş var. Çarşaf ve havlu her seansta değişir.</p></li>
-      </ul>
+      <dl class="kural-liste">
+        <div><dt>Terapisti siz seçersiniz</dt><dd>Kadın ya da erkek terapist. Tercihinizi mesajda yazmanız yeterli.</dd></div>
+        <div><dt>Fiyat baştan belli</dt><dd>Listedeki fiyatı ödersiniz; seans sonunda tutara bir şey eklemiyoruz.</dd></div>
+        <div><dt>Ayrı ve temiz oda</dt><dd>Her odada duş var. Çarşafı ve havluyu her seansta değiştiriyoruz.</dd></div>
+      </dl>
     </div>
   </section>
 
-  <section class="bolum" id="secim" aria-labelledby="secim-baslik">
+  <section class="secim-bolum" id="secim" aria-labelledby="secim-baslik">
     <div class="kap">
       <div class="bolum-bas">
         <h2 id="secim-baslik">Hangi masaj size uygun?</h2>
-        <p>Size en yakın olanı seçin, önerimizi ve fiyatını görün.</p>
+        <p>Size en yakın olanı seçin; önerimiz, fiyatı ve gönderilecek mesaj yanında çıkar.</p>
       </div>
       <div class="secim">
         <fieldset class="secici">
           <legend>Bugün en çok neye ihtiyacınız var?</legend>
           <div class="secenekler">
-            <label class="secenek"><input type="radio" name="ihtiyac" id="s-rahat" checked>Gevşemek, stres atmak</label>
+            <label class="secenek"><input type="radio" name="ihtiyac" id="s-rahat" checked>Gevşemek istiyorum</label>
             <label class="secenek"><input type="radio" name="ihtiyac" id="s-agri">Boynum, sırtım tutuluyor</label>
-            <label class="secenek"><input type="radio" name="ihtiyac" id="s-spor">Spordan sonra kaslarım yorgun</label>
+            <label class="secenek"><input type="radio" name="ihtiyac" id="s-spor">Spordan sonra yorgunum</label>
             <label class="secenek"><input type="radio" name="ihtiyac" id="s-ayak">Gün boyu ayaktayım</label>
-            <label class="secenek"><input type="radio" name="ihtiyac" id="s-usu">Çabuk üşüyorum, ısınmak istiyorum</label>
+            <label class="secenek"><input type="radio" name="ihtiyac" id="s-usu">Çabuk üşüyorum</label>
             <label class="secenek"><input type="radio" name="ihtiyac" id="s-koku">Hafif, kokulu bir masaj</label>
           </div>
         </fieldset>
         <div class="oneriler" aria-live="polite">
-          <div class="oneri o-rahat"><small>Önerimiz</small><h3>İsveç masajı</h3><p class="fiyat-satir"><b>900 ₺</b>, 50 dakika</p><p>Uzun, akıcı hareketlerle tüm vücut. İlk kez gelenler için de en uygunu.</p><a class="dugme dugme-ana" href="https://wa.me/905550000000?text=Merhaba%2C%20İsveç%20masajı%20(50%20dk)%20için%20randevu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Bu masaj için yaz</a></div>
-          <div class="oneri o-agri"><small>Önerimiz</small><h3>Derin doku masajı</h3><p class="fiyat-satir"><b>1.100 ₺</b>, 50 dakika</p><p>Boyun, sırt ve omuzda yavaş, yoğun baskı. Ağrınız sürekliyse önce doktorunuza danışın.</p><a class="dugme dugme-ana" href="https://wa.me/905550000000?text=Merhaba%2C%20derin%20doku%20masajı%20(50%20dk)%20için%20randevu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Bu masaj için yaz</a></div>
-          <div class="oneri o-spor"><small>Önerimiz</small><h3>Sporcu masajı</h3><p class="fiyat-satir"><b>950 ₺</b>, 40 dakika</p><p>Çalıştırdığınız kas grubuna odaklanır. Antrenmandan önce ya da sonra.</p><a class="dugme dugme-ana" href="https://wa.me/905550000000?text=Merhaba%2C%20sporcu%20masajı%20(40%20dk)%20için%20randevu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Bu masaj için yaz</a></div>
-          <div class="oneri o-ayak"><small>Önerimiz</small><h3>Refleksoloji</h3><p class="fiyat-satir"><b>650 ₺</b>, 30 dakika</p><p>Ayak tabanındaki noktalara baskı. Kısa ve hafif bir mola.</p><a class="dugme dugme-ana" href="https://wa.me/905550000000?text=Merhaba%2C%20refleksoloji%20(30%20dk)%20için%20randevu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Bu masaj için yaz</a></div>
-          <div class="oneri o-usu"><small>Önerimiz</small><h3>Sıcak taş masajı</h3><p class="fiyat-satir"><b>1.400 ₺</b>, 70 dakika</p><p>Isıtılmış bazalt taşlar sırt, bel ve bacaklarda gezdirilir.</p><a class="dugme dugme-ana" href="https://wa.me/905550000000?text=Merhaba%2C%20sıcak%20taş%20masajı%20(70%20dk)%20için%20randevu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Bu masaj için yaz</a></div>
-          <div class="oneri o-koku"><small>Önerimiz</small><h3>Aromaterapi masajı</h3><p class="fiyat-satir"><b>1.000 ₺</b>, 50 dakika</p><p>Seçtiğiniz bitkisel yağla hafif ve orta baskı. Yağı seans başında birlikte seçeriz.</p><a class="dugme dugme-ana" href="https://wa.me/905550000000?text=Merhaba%2C%20aromaterapi%20masajı%20(50%20dk)%20için%20randevu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Bu masaj için yaz</a></div>
+          <div class="oneri o-rahat"><small>Önerimiz</small><h3>İsveç masajı</h3><p class="fiyat-satir"><b>900 ₺</b>, 50 dakika</p><p>Uzun, akıcı hareketlerle tüm vücut. İlk kez gelenler için de en uygunu.</p><p class="balon"><span class="balon-ad">Gönderilecek mesaj</span>Merhaba, İsveç masajı (50 dk) için randevu almak istiyorum.</p><a class="dugme dugme-ana" href="https://wa.me/905550000000?text=Merhaba%2C%20%C4%B0sve%C3%A7%20masaj%C4%B1%20%2850%20dk%29%20i%C3%A7in%20randevu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Bu masaj için yaz</a></div>
+          <div class="oneri o-agri"><small>Önerimiz</small><h3>Derin doku masajı</h3><p class="fiyat-satir"><b>1.100 ₺</b>, 50 dakika</p><p>Boyun, sırt ve omuzda yavaş, yoğun baskı. Ağrınız sürekliyse önce doktorunuza danışın.</p><p class="balon"><span class="balon-ad">Gönderilecek mesaj</span>Merhaba, derin doku masajı (50 dk) için randevu almak istiyorum.</p><a class="dugme dugme-ana" href="https://wa.me/905550000000?text=Merhaba%2C%20derin%20doku%20masaj%C4%B1%20%2850%20dk%29%20i%C3%A7in%20randevu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Bu masaj için yaz</a></div>
+          <div class="oneri o-spor"><small>Önerimiz</small><h3>Sporcu masajı</h3><p class="fiyat-satir"><b>950 ₺</b>, 40 dakika</p><p>Çalıştırdığınız kas grubuna odaklanır; antrenmandan önce ya da sonra.</p><p class="balon"><span class="balon-ad">Gönderilecek mesaj</span>Merhaba, sporcu masajı (40 dk) için randevu almak istiyorum.</p><a class="dugme dugme-ana" href="https://wa.me/905550000000?text=Merhaba%2C%20sporcu%20masaj%C4%B1%20%2840%20dk%29%20i%C3%A7in%20randevu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Bu masaj için yaz</a></div>
+          <div class="oneri o-ayak"><small>Önerimiz</small><h3>Refleksoloji</h3><p class="fiyat-satir"><b>650 ₺</b>, 30 dakika</p><p>Ayak tabanındaki noktalara baskı. Kısa ve hafif bir mola.</p><p class="balon"><span class="balon-ad">Gönderilecek mesaj</span>Merhaba, refleksoloji (30 dk) için randevu almak istiyorum.</p><a class="dugme dugme-ana" href="https://wa.me/905550000000?text=Merhaba%2C%20refleksoloji%20%2830%20dk%29%20i%C3%A7in%20randevu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Bu masaj için yaz</a></div>
+          <div class="oneri o-usu"><small>Önerimiz</small><h3>Sıcak taş masajı</h3><p class="fiyat-satir"><b>1.400 ₺</b>, 70 dakika</p><p>Isıtılmış bazalt taşları sırt, bel ve bacaklarda gezdiriyoruz.</p><p class="balon"><span class="balon-ad">Gönderilecek mesaj</span>Merhaba, sıcak taş masajı (70 dk) için randevu almak istiyorum.</p><a class="dugme dugme-ana" href="https://wa.me/905550000000?text=Merhaba%2C%20s%C4%B1cak%20ta%C5%9F%20masaj%C4%B1%20%2870%20dk%29%20i%C3%A7in%20randevu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Bu masaj için yaz</a></div>
+          <div class="oneri o-koku"><small>Önerimiz</small><h3>Aromaterapi masajı</h3><p class="fiyat-satir"><b>1.000 ₺</b>, 50 dakika</p><p>Seçtiğiniz bitkisel yağla hafif ve orta baskı. Yağı seans başında birlikte seçeriz.</p><p class="balon"><span class="balon-ad">Gönderilecek mesaj</span>Merhaba, aromaterapi masajı (50 dk) için randevu almak istiyorum.</p><a class="dugme dugme-ana" href="https://wa.me/905550000000?text=Merhaba%2C%20aromaterapi%20masaj%C4%B1%20%2850%20dk%29%20i%C3%A7in%20randevu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Bu masaj için yaz</a></div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="bolum bolum-ton" id="fiyatlar" aria-labelledby="fiyatlar-baslik">
+  <section class="bolum-ton fiyat-bolum" id="fiyatlar" aria-labelledby="fiyatlar-baslik">
     <div class="kap">
       <div class="bolum-bas">
         <h2 id="fiyatlar-baslik">Denizli masaj fiyatları</h2>
@@ -399,28 +416,28 @@ address { font-style: normal; font-size: 1.2rem; font-weight: 700; }
         <caption class="gizli">Masaj türleri, süreleri ve fiyatları</caption>
         <thead><tr><th scope="col">Masaj</th><th scope="col" class="sayi">Süre</th><th scope="col" class="sayi">Fiyat</th><th scope="col"><span class="gizli">Randevu</span></th></tr></thead>
         <tbody>
-          <tr><th scope="row"><h3>İsveç masajı</h3><p>Uzun, akıcı hareketlerle tüm vücut.</p></th><td class="sayi sure">50 dk<br>80 dk</td><td class="sayi">900 ₺<br>1.300 ₺</td><td class="git"><a class="yaz" href="https://wa.me/905550000000?text=Merhaba%2C%20İsveç%20masajı%20için%20randevu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Bu masaj için yaz</a></td></tr>
-          <tr><th scope="row"><h3>Derin doku masajı</h3><p>Boyun, sırt ve omuzda yavaş, yoğun baskı.</p></th><td class="sayi sure">50 dk<br>80 dk</td><td class="sayi">1.100 ₺<br>1.550 ₺</td><td class="git"><a class="yaz" href="https://wa.me/905550000000?text=Merhaba%2C%20derin%20doku%20masajı%20için%20randevu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Bu masaj için yaz</a></td></tr>
-          <tr><th scope="row"><h3>Aromaterapi masajı</h3><p>Seçtiğiniz bitkisel yağla hafif ve orta baskı.</p></th><td class="sayi sure">50 dk<br>80 dk</td><td class="sayi">1.000 ₺<br>1.450 ₺</td><td class="git"><a class="yaz" href="https://wa.me/905550000000?text=Merhaba%2C%20aromaterapi%20masajı%20için%20randevu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Bu masaj için yaz</a></td></tr>
-          <tr><th scope="row"><h3>Sıcak taş masajı</h3><p>Isıtılmış bazalt taşlarla sırt, bel ve bacaklar.</p></th><td class="sayi sure">70 dk</td><td class="sayi">1.400 ₺</td><td class="git"><a class="yaz" href="https://wa.me/905550000000?text=Merhaba%2C%20sıcak%20taş%20masajı%20için%20randevu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Bu masaj için yaz</a></td></tr>
-          <tr><th scope="row"><h3>Sporcu masajı</h3><p>Çalıştırdığınız kas grubuna odaklanır.</p></th><td class="sayi sure">40 dk</td><td class="sayi">950 ₺</td><td class="git"><a class="yaz" href="https://wa.me/905550000000?text=Merhaba%2C%20sporcu%20masajı%20için%20randevu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Bu masaj için yaz</a></td></tr>
-          <tr><th scope="row"><h3>Refleksoloji</h3><p>Ayak tabanındaki noktalara baskı.</p></th><td class="sayi sure">30 dk</td><td class="sayi">650 ₺</td><td class="git"><a class="yaz" href="https://wa.me/905550000000?text=Merhaba%2C%20refleksoloji%20için%20randevu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Bu masaj için yaz</a></td></tr>
+          <tr><th scope="row"><h3>İsveç masajı</h3><p>Uzun, akıcı hareketlerle tüm vücut.</p></th><td class="sayi sure">50 dk<br>80 dk</td><td class="sayi">900 ₺<br>1.300 ₺</td><td class="git"><a class="yaz" href="https://wa.me/905550000000?text=Merhaba%2C%20%C4%B0sve%C3%A7%20masaj%C4%B1%20i%C3%A7in%20randevu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Bu masaj için yaz</a></td></tr>
+          <tr><th scope="row"><h3>Derin doku masajı</h3><p>Boyun, sırt ve omuzda yavaş, yoğun baskı.</p></th><td class="sayi sure">50 dk<br>80 dk</td><td class="sayi">1.100 ₺<br>1.550 ₺</td><td class="git"><a class="yaz" href="https://wa.me/905550000000?text=Merhaba%2C%20derin%20doku%20masaj%C4%B1%20i%C3%A7in%20randevu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Bu masaj için yaz</a></td></tr>
+          <tr><th scope="row"><h3>Aromaterapi masajı</h3><p>Seçtiğiniz bitkisel yağla hafif ve orta baskı.</p></th><td class="sayi sure">50 dk<br>80 dk</td><td class="sayi">1.000 ₺<br>1.450 ₺</td><td class="git"><a class="yaz" href="https://wa.me/905550000000?text=Merhaba%2C%20aromaterapi%20masaj%C4%B1%20i%C3%A7in%20randevu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Bu masaj için yaz</a></td></tr>
+          <tr><th scope="row"><h3>Sıcak taş masajı</h3><p>Isıtılmış bazalt taşlarla sırt, bel ve bacaklar.</p></th><td class="sayi sure">70 dk</td><td class="sayi">1.400 ₺</td><td class="git"><a class="yaz" href="https://wa.me/905550000000?text=Merhaba%2C%20s%C4%B1cak%20ta%C5%9F%20masaj%C4%B1%20i%C3%A7in%20randevu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Bu masaj için yaz</a></td></tr>
+          <tr><th scope="row"><h3>Sporcu masajı</h3><p>Çalıştırdığınız kas grubuna odaklanır.</p></th><td class="sayi sure">40 dk</td><td class="sayi">950 ₺</td><td class="git"><a class="yaz" href="https://wa.me/905550000000?text=Merhaba%2C%20sporcu%20masaj%C4%B1%20i%C3%A7in%20randevu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Bu masaj için yaz</a></td></tr>
+          <tr><th scope="row"><h3>Refleksoloji</h3><p>Ayak tabanındaki noktalara baskı.</p></th><td class="sayi sure">30 dk</td><td class="sayi">650 ₺</td><td class="git"><a class="yaz" href="https://wa.me/905550000000?text=Merhaba%2C%20refleksoloji%20i%C3%A7in%20randevu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Bu masaj için yaz</a></td></tr>
         </tbody>
       </table>
-      <p class="dahil"><svg class="i" aria-hidden="true"><use href="#i-kalkan"/></svg><span><strong>Fiyata dahil:</strong> duş, havlu, terlik, tek kullanımlık iç çamaşırı ve bitki çayı. Paket ya da gizli ek ücret yok.</span></p>
+      <p class="dahil"><strong>Fiyata dahil:</strong> duş, havlu, terlik, tek kullanımlık iç çamaşırı ve bitki çayı. Paket satmıyoruz; seans sonunda başka bir ücret istemiyoruz.</p>
     </div>
   </section>
 
-  <section class="bolum" id="randevu" aria-labelledby="randevu-baslik" data-cubuk-gizle>
+  <section class="randevu-bolum" id="randevu" aria-labelledby="randevu-baslik" data-cubuk-gizle>
     <div class="kap randevu-ic">
       <div>
         <div class="bolum-bas">
-          <h2 id="randevu-baslik">İlk randevunuz üç adımda</h2>
+          <h2 id="randevu-baslik">İlk randevunuz nasıl işler</h2>
         </div>
         <ol class="adimlar">
-          <li><h3>Yazın ya da arayın</h3><p>Masajı ve size uyan günü söyleyin. Karar vermediyseniz biz öneririz.</p></li>
-          <li><h3>Saati onaylayalım</h3><p>Boş saatleri aynı yazışmada veririz, siz birini seçersiniz.</p></li>
-          <li><h3>Gelin</h3><p>10 dakika önce gelmeniz yeterli. Havlu, terlik ve iç çamaşırı bizden.</p></li>
+          <li><b>Yazdığınızda</b><p>Masajı ve size uyan günü söyleyin. Karar vermediyseniz biz önerelim.</p></li>
+          <li><b>Aynı yazışmada</b><p>Boş saatleri yazarız, siz birini seçersiniz.</p></li>
+          <li><b>Randevu günü</b><p>10 dakika önce gelin. Havlu, terlik ve iç çamaşırı bizden.</p></li>
         </ol>
       </div>
       <form class="randevu-kart" data-randevu aria-label="Randevu mesajı">
@@ -441,71 +458,67 @@ address { font-style: normal; font-size: 1.2rem; font-weight: 700; }
           <div class="alan"><label for="f-saat">Saat</label><select id="f-saat" name="saat"><option>Sabah</option><option>Öğle</option><option>Akşam</option></select></div>
           <div class="alan genis"><label for="f-terapist">Terapist</label><select id="f-terapist" name="terapist"><option>Fark etmez</option><option>Kadın terapist</option><option>Erkek terapist</option></select></div>
         </div>
-        <div class="onizleme">
-          <b>WhatsApp'ta açılacak mesaj</b>
-          <output data-mesaj>Merhaba, masaj randevusu almak istiyorum.</output>
-        </div>
-        <a class="dugme dugme-ana dugme-buyuk" data-gonder href="https://wa.me/905550000000?text=Merhaba%2C%20masaj%20randevusu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp'tan yaz</a>
+        <p class="balon"><span class="balon-ad">WhatsApp’ta açılacak mesaj</span><output data-mesaj>Merhaba, masaj randevusu almak istiyorum.</output></p>
+        <a class="dugme dugme-ana" data-gonder href="https://wa.me/905550000000?text=Merhaba%2C%20masaj%20randevusu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp’tan yaz</a>
         <p class="kucuk">Yazmak istemezseniz arayın: <a href="tel:+905550000000">0 555 000 00 00</a></p>
       </form>
     </div>
   </section>
 
-  <section class="bolum bolum-ton" id="salon" aria-labelledby="salon-baslik">
+  <section class="bolum-ton salon-bolum" id="salon" aria-labelledby="salon-baslik">
     <div class="kap">
       <div class="bolum-bas">
         <h2 id="salon-baslik">Salonu görün</h2>
-        <p>Gelmeden önce nereye geleceğinizi bilin.</p>
+        <p>Örnek fotoğraflar. Yayında salonun kendi odaları yer alacak.</p>
       </div>
       <div class="galeri">
-        <figure class="g1"><img src="https://images.unsplash.com/photo-1696841212541-449ca29397cc?auto=format&amp;fit=crop&amp;w=1100&amp;h=800&amp;q=70" alt="Loş odada sırtına sıcak taşlar dizilmiş, masaj masasında uzanan kadın" width="1100" height="800" loading="lazy"><figcaption>Sıcak taş masajı odası</figcaption></figure>
-        <figure><img src="https://images.unsplash.com/photo-1787168295699-03aed18d17d4?auto=format&amp;fit=crop&amp;w=600&amp;h=750&amp;q=70" alt="Ahşap zeminde rulo beyaz havlular" width="600" height="750" loading="lazy"><figcaption>Her seansta temiz havlu</figcaption></figure>
+        <figure class="g1"><img src="https://images.unsplash.com/photo-1696841212541-449ca29397cc?auto=format&amp;fit=crop&amp;w=1100&amp;h=800&amp;q=70" alt="Loş odada sırtına sıcak taşlar dizilmiş, masaj masasında uzanan kadın" width="1100" height="800" loading="lazy"><figcaption>Sıcak taş masajı</figcaption></figure>
+        <figure><img src="https://images.unsplash.com/photo-1787168295699-03aed18d17d4?auto=format&amp;fit=crop&amp;w=600&amp;h=750&amp;q=70" alt="Ahşap zeminde rulo beyaz havlular" width="600" height="750" loading="lazy"><figcaption>Temiz havlular</figcaption></figure>
         <figure><img src="https://images.unsplash.com/photo-1706795033917-dee116e7cba2?auto=format&amp;fit=crop&amp;w=600&amp;h=750&amp;q=70" alt="Katlanmış gri havluların yanında yanan mum" width="600" height="750" loading="lazy"><figcaption>Dinlenme köşesi</figcaption></figure>
       </div>
     </div>
   </section>
 
-  <section class="bolum" id="yorumlar" aria-labelledby="yorumlar-baslik">
+  <section class="yorum-bolum" id="yorumlar" aria-labelledby="yorumlar-baslik">
     <div class="kap">
       <div class="yorum">
-        <svg aria-hidden="true"><use href="#i-yildiz"/></svg>
         <div>
-          <h2 id="yorumlar-baslik" class="yorum-baslik">Gelenlerin yorumları Google'da</h2>
-          <p>Bize gelmeden önce başkalarının deneyimini okuyun. Yorumları biz seçmiyoruz.</p>
+          <h2 id="yorumlar-baslik">Gelenlerin yorumları Google’da</h2>
+          <p>Yorumları biz seçmiyoruz; hepsini salonun Google profilinde okuyabilirsiniz. Bağlantı yayında salonun profiline gidecek.</p>
         </div>
         <a class="dugme dugme-ikinci" href="https://www.google.com/maps/search/?api=1&amp;query=Ilg%C4%B1n%20Masaj%20Salonu%20Pamukkale%20Denizli">Google yorumlarını aç</a>
       </div>
     </div>
   </section>
 
-  <section class="bolum" id="sorular" aria-labelledby="sorular-baslik">
+  <section class="sorular-bolum" id="sorular" aria-labelledby="sorular-baslik">
     <div class="kap">
       <div class="bolum-bas"><h2 id="sorular-baslik">Sık sorulanlar</h2></div>
       <div class="sorular">
-        <div class="soru"><h3>Denizli'de masaj fiyatları ne kadar?</h3><p>Bizde 30 dakikalık refleksoloji 650 ₺, 50 dakikalık İsveç masajı 900 ₺, 80 dakikalık derin doku masajı 1.550 ₺. Bütün fiyatlar yukarıdaki tabloda.</p></div>
+        <div class="soru"><h3>Denizli’de masaj fiyatları ne kadar?</h3><p>Bizde 30 dakikalık refleksoloji 650 ₺, 50 dakikalık İsveç masajı 900 ₺, 80 dakikalık derin doku masajı 1.550 ₺. Bütün fiyatlar yukarıdaki tabloda.</p></div>
         <div class="soru"><h3>Bir masaj seansı ne kadar sürer?</h3><p>Masaja göre 30 ile 80 dakika. Karşılama, duş ve dinlenmeyle salonda toplam 20 dakika daha kalırsınız.</p></div>
         <div class="soru"><h3>Fiyata neler dahil, paket var mı?</h3><p>Duş, havlu, terlik, tek kullanımlık iç çamaşırı ve bitki çayı dahil. Paket satmıyoruz; listedeki masaj ve süre ne ise o.</p></div>
-        <div class="soru"><h3>Kadın terapist var mı?</h3><p>Evet, kadın ve erkek terapist var. Tercihinizi randevu mesajına yazın.</p></div>
-        <div class="soru"><h3>Randevusuz gelebilir miyim?</h3><p>Boş oda varsa evet, ama beklememek için önce arayın ya da yazın.</p></div>
+        <div class="soru"><h3>Kadın terapist var mı?</h3><p>Evet, kadın ve erkek terapistimiz var. Tercihinizi randevu mesajına yazın.</p></div>
+        <div class="soru"><h3>Randevusuz gelebilir miyim?</h3><p>Boş oda varsa evet. Beklememek için önce arayın ya da yazın.</p></div>
         <div class="soru"><h3>Hangi durumlarda masaj yapılmaz?</h3><p>Ateş, yeni ameliyat, açık yara, damar tıkanıklığı ve hamileliğin ilk üç ayında masaj yapmıyoruz. Masaj tıbbi tedavinin yerini tutmaz; emin değilseniz önce doktorunuza danışın.</p></div>
-        <div class="soru"><h3>Nasıl ödeme yapabilirim?</h3><p>Nakit, kredi kartı ya da havale. Ödeme seanstan sonra alınır.</p></div>
-        <div class="soru"><h3>Randevumu nasıl iptal ederim?</h3><p>Aynı WhatsApp yazışmasından en az 3 saat önce haber verin. İptal için ücret alınmaz.</p></div>
+        <div class="soru"><h3>Nasıl ödeme yapabilirim?</h3><p>Nakit, kredi kartı ya da havale. Ödemeyi seanstan sonra alıyoruz.</p></div>
+        <div class="soru"><h3>Randevumu nasıl iptal ederim?</h3><p>Aynı WhatsApp yazışmasından en az 3 saat önce haber verin. İptal için ücret almıyoruz.</p></div>
       </div>
     </div>
   </section>
 
-  <section class="bolum bolum-ton" id="konum" aria-labelledby="konum-baslik" data-cubuk-gizle>
+  <section class="bolum-ton konum-bolum" id="konum" aria-labelledby="konum-baslik" data-cubuk-gizle>
     <div class="kap konum">
       <div class="konum-metin">
         <h2 id="konum-baslik">Adres ve çalışma saatleri</h2>
-        <address>Ilgın Masaj Salonu<br>Örnek Mah. Huzur Sk. No: 4<br>Pamukkale, Denizli</address>
+        <address>Ilgın Masaj Salonu<br>Örnek Mah. 1. Sk. No: 4<br>Pamukkale, Denizli</address>
         <p class="durum" data-durum hidden></p>
         <dl class="ulasim">
           <div><dt>Otopark</dt><dd>Salonun önünde ücretsiz park yeri var.</dd></div>
           <div><dt>Toplu taşıma</dt><dd>En yakın otobüs durağı 3 dakika yürüme.</dd></div>
         </dl>
         <div class="konum-eylem">
-          <a class="dugme dugme-ana" href="https://wa.me/905550000000?text=Merhaba%2C%20masaj%20randevusu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp'tan yaz</a>
+          <a class="dugme dugme-ana" href="https://wa.me/905550000000?text=Merhaba%2C%20masaj%20randevusu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp’tan yaz</a>
           <a class="dugme dugme-ikinci" href="tel:+905550000000" aria-label="Telefonla ara: 0 555 000 00 00"><svg class="i" aria-hidden="true"><use href="#i-tel"/></svg>0 555 000 00 00</a>
           <a class="yol" href="https://www.google.com/maps/search/?api=1&amp;query=Ilg%C4%B1n%20Masaj%20Salonu%20Pamukkale%20Denizli"><svg class="i" aria-hidden="true"><use href="#i-yer"/></svg>Yol tarifi al</a>
         </div>
@@ -528,15 +541,18 @@ address { font-style: normal; font-size: 1.2rem; font-weight: 700; }
 
 <footer class="alt" data-cubuk-gizle>
   <div class="kap alt-ic">
-    <p><strong>Ilgın Masaj Salonu</strong><br>Örnek Mah. Huzur Sk. No: 4, Pamukkale/Denizli<br><a href="tel:+905550000000">0 555 000 00 00</a></p>
+    <p><strong>Ilgın Masaj Salonu</strong><br>Örnek Mah. 1. Sk. No: 4, Pamukkale/Denizli<br><a href="tel:+905550000000">0 555 000 00 00</a></p>
     <p>Pazartesi-cumartesi 10.00-21.00<br>Pazar 12.00-20.00</p>
-    <p>Bu site çerez ve izleme kodu kullanmaz.<br>© 2026</p>
+    <div class="alt-ic-son">
+      <p>Bu site çerez ve izleme kodu kullanmaz. Tema seçiminiz yalnız tarayıcınızda saklanır.</p>
+      <p><button class="tema-dugme" type="button" data-tema-dugme>Koyu temaya geç</button></p>
+      <p>© 2026</p>
+    </div>
   </div>
 </footer>
 
 <nav class="cubuk" aria-label="Hızlı iletişim">
-  <p class="durum" data-durum hidden></p>
-  <a class="dugme dugme-ana" href="https://wa.me/905550000000?text=Merhaba%2C%20masaj%20randevusu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp'tan yaz</a>
+  <a class="dugme dugme-ana" href="https://wa.me/905550000000?text=Merhaba%2C%20masaj%20randevusu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp’tan yaz</a>
   <a class="dugme dugme-ikinci" href="tel:+905550000000" aria-label="Telefonla ara: 0 555 000 00 00"><svg class="i" aria-hidden="true"><use href="#i-tel"/></svg>Ara</a>
 </nav>
 <script src="ortak.js" defer></script>

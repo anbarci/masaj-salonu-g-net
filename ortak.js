@@ -64,4 +64,17 @@
     }, { rootMargin: '-1px 0px 0px 0px' });
     document.querySelectorAll('[data-cubuk-gizle]').forEach(el => io.observe(el));
   }
+  const temaDugme = document.querySelector('[data-tema-dugme]');
+  if (temaDugme) {
+    const kok = document.documentElement;
+    const sistem = () => matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    const goster = () => { temaDugme.textContent = (kok.dataset.theme || sistem()) === 'dark' ? 'Açık temaya geç' : 'Koyu temaya geç'; };
+    goster();
+    temaDugme.addEventListener('click', () => {
+      const yeni = (kok.dataset.theme || sistem()) === 'dark' ? 'light' : 'dark';
+      kok.dataset.theme = yeni;
+      try { localStorage.setItem('tema', yeni); } catch (e) {}
+      goster();
+    });
+  }
 })();

@@ -65,7 +65,8 @@
 }
 </script>
 <style>
-/* Yalnız eylemler yeşil; nötrler tek tonda (OKLCH h 165), koyu temada yeşil daha açık ve az doygun (renk-secimi). */
+/* Hallmark · tema: custom · iş: randevu (WhatsApp, arama) · tür: modern-minimal · gezinme: N9 · yalnız eylemler yeşil, nötrler tek ton (OKLCH h 165) */
+/* Hallmark · waive 79 · hero fotoğrafı 1440 px ekranda y 811 noktasına iniyor · metin sütunu masaj odası fotoğrafının ortasına hizalı, boşluk fotoğrafın yanında kalıyor */
 :root {
   --zemin: #F3F7F5;
   --yuzey: #EAEEEC;
@@ -84,6 +85,7 @@
   --ust: 64px;
   --cubuk: 68px;
   --ease: cubic-bezier(0.23, 1, 0.32, 1);
+  --yazi: "Lexend", system-ui, sans-serif;
   color-scheme: light dark;
 }
 @media (prefers-color-scheme: dark) {
@@ -92,18 +94,20 @@
 :root[data-theme="dark"] { --zemin: #101814; --yuzey: #17221D; --kart: #141E19; --murekkep: #E7ECEA; --soluk: #A6B2AC; --cizgi: #2C3933; --kenar: #617269; --eylem: #65B27B; --eylem-uzeri: #06170D; --eylem-hover: #7CC490; --balon: #173325; color-scheme: dark; }
 :root[data-theme="light"] { color-scheme: light; }
 *, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: clip; }
 html { -webkit-text-size-adjust: 100%; scroll-padding-top: 1rem; scroll-padding-bottom: calc(var(--cubuk) + 1rem); accent-color: var(--eylem); }
 @media (min-width: 1000px) { html { scroll-padding-top: calc(var(--ust) + 1rem); scroll-padding-bottom: 1rem; } }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
-body { margin: 0; background: var(--zemin); color: var(--murekkep); caret-color: var(--eylem); font-family: "Lexend", system-ui, sans-serif; font-size: 1rem; line-height: 1.65; padding-bottom: calc(var(--cubuk) + env(safe-area-inset-bottom)); }
+body { margin: 0; background: var(--zemin); color: var(--murekkep); caret-color: var(--eylem); font-family: var(--yazi); font-size: 1rem; line-height: 1.65; padding-bottom: calc(var(--cubuk) + env(safe-area-inset-bottom)); }
 ::selection { background: var(--balon); color: var(--murekkep); }
 h1, h2, h3 { margin: 0; line-height: 1.12; letter-spacing: -0.03em; text-wrap: balance; overflow-wrap: anywhere; min-width: 0; }
-h1 { font-size: clamp(1.95rem, 1.4rem + 2.1vw, 2.85rem); font-weight: 700; letter-spacing: -0.035em; }
-h2 { font-size: clamp(1.5rem, 1.25rem + 1.25vw, 2.125rem); font-weight: 650; }
+h1 { font-size: clamp(2rem, 1.4rem + 2.2vw, 3.125rem); font-weight: 700; letter-spacing: -0.035em; }
+h2 { font-size: clamp(1.6rem, 1.1rem + 2vw, 2.75rem); font-weight: 650; }
 h3 { font-size: 1.0625rem; font-weight: 600; letter-spacing: -0.015em; }
 p { margin: 0; }
 a { color: inherit; text-underline-offset: .25em; }
-img { display: block; max-width: 100%; height: auto; }
+img { display: block; max-width: 100%; height: auto; color: var(--soluk); }
+select:disabled, button:disabled, [aria-disabled="true"] { opacity: .55; cursor: not-allowed; }
 :focus-visible { outline: 3px solid var(--eylem); outline-offset: 3px; border-radius: 4px; }
 .gizli { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .atla { position: absolute; left: 1rem; top: -6rem; display: inline-flex; align-items: center; min-height: 48px; background: var(--eylem); color: var(--eylem-uzeri); padding: 0 1rem; border-radius: var(--r-k); z-index: 30; }
@@ -156,12 +160,12 @@ svg.i { width: 1.25rem; height: 1.25rem; flex: none; }
 .eylem-satir .dugme-ana { flex-grow: 2; }
 @media (min-width: 560px) { .eylem-satir { gap: .75rem; } .eylem-satir .dugme { flex: 0 1 auto; padding-inline: 1.5rem; font-size: 1.0625rem; } }
 .hero-foto { margin: 0; min-width: 0; }
-.hero-foto img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--r); background: var(--yuzey); }
+.hero-foto img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--r); background: var(--yuzey); color: var(--murekkep); }
 .hero-foto figcaption { color: var(--soluk); font-size: .875rem; margin-top: .5rem; }
 @media (min-width: 960px) {
-  .hero { padding-block: 3rem 4.5rem; }
-  .hero-ic { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 3.5rem; }
-  .hero-foto img { aspect-ratio: 5 / 4; }
+  .hero { padding-block: 2.5rem 4rem; min-height: calc(100svh - var(--ust)); display: grid; align-items: center; }
+  .hero-ic { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 3.5rem; }
+  .hero-foto img { aspect-ratio: 3 / 4; max-height: calc(100svh - var(--ust) - 4rem); }
 }
 
 .bolum-ton { background: var(--yuzey); }
@@ -178,7 +182,7 @@ svg.i { width: 1.25rem; height: 1.25rem; flex: none; }
 .kural-liste div:last-child { border-bottom: 1px solid var(--kenar); }
 .kural-liste dt { font-weight: 600; }
 .kural-liste dd { margin: 0; color: var(--soluk); }
-@media (min-width: 960px) { .kurallar { padding-block: 3.5rem; } .kural-ic { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 4rem; align-items: center; } }
+@media (min-width: 960px) { .kurallar { padding-block: 4rem; } .secim-bolum, .fiyat-bolum, .salon-bolum { padding-block: 4rem; } .sorular-bolum, .konum-bolum { padding-block: 6rem; } } @media (min-width: 960px) { .kurallar { padding-block: 4rem; } .kural-ic { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 4rem; align-items: center; } }
 
 .secim-bolum { padding-block: 3.5rem 3rem; }
 .secici { display: grid; gap: 1rem; border: 0; margin: 0; padding: 0; min-width: 0; }
@@ -267,10 +271,9 @@ select:focus-visible { outline-color: var(--eylem); }
 .galeri figcaption { color: var(--soluk); font-size: .875rem; margin-top: .5rem; }
 @media (min-width: 900px) { .galeri { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr); } .galeri .g1 { grid-column: auto; } .galeri img { aspect-ratio: 4 / 5; } .galeri .g1 img { aspect-ratio: auto; height: 100%; contain: size; } }
 
-.yorum-bolum { padding-block: 2rem; }
-.yorum { display: grid; gap: 1rem; align-items: center; padding: 1.5rem; border-radius: var(--r); box-shadow: inset 0 0 0 1px var(--cizgi); background: var(--kart); }
+.yorum { margin-top: 2.5rem; display: grid; gap: 1rem; align-items: center; padding: 1.5rem; border-radius: var(--r); box-shadow: inset 0 0 0 1px var(--cizgi); background: var(--kart); }
 .yorum p { color: var(--soluk); max-width: 60ch; }
-.yorum h2 { font-size: clamp(1.25rem, 1.1rem + .6vw, 1.5rem); margin-bottom: .25rem; }
+.yorum h3 { font-size: clamp(1.25rem, 1.1rem + .6vw, 1.5rem); margin-bottom: .25rem; }
 @media (min-width: 760px) { .yorum { grid-template-columns: minmax(0, 1fr) auto; gap: 2rem; padding: 1.5rem 2rem; } }
 
 .sorular-bolum { padding-block: 3.5rem; }
@@ -353,7 +356,7 @@ p, dd, li, figcaption, td, th { text-wrap: pretty; }
     <div class="kap hero-ic">
       <div class="hero-metin">
         <h1 id="baslik">Denizli’de masaj: fiyatı belli, randevusu tek mesaj</h1>
-        <p class="hero-alt">İsveç, derin doku, sıcak taş, aromaterapi, sporcu masajı ve refleksoloji. Pamukkale’de, ayrı ve duşlu odalarda.</p>
+        <p class="hero-alt">Altı çeşit masaj, Pamukkale’de ayrı ve duşlu odalarda.</p>
         <ul class="olgular">
           <li><svg aria-hidden="true"><use href="#i-etiket"/></svg><b>650 ₺’den başlayan fiyatlar</b><span>30 ile 80 dakika arası seanslar</span></li>
           <li><svg aria-hidden="true"><use href="#i-saat"/></svg><b class="durum" data-durum>Her gün açık</b><span>Pazartesi-cumartesi 10.00-21.00, pazar 12.00-20.00</span></li>
@@ -374,12 +377,12 @@ p, dd, li, figcaption, td, th { text-wrap: pretty; }
     <div class="kap kural-ic">
       <div class="kural-ana">
         <h2 id="kurallar-baslik">Burada nasıl çalışıyoruz</h2>
-        <p class="ana-kural"><strong>Yalnız profesyonel masaj yapıyoruz.</strong> Fiyat listesindeki masajlar dışında hizmetimiz yok; uygunsuz bir talepte seansı bitiriyoruz.</p>
+        <p class="ana-kural"><strong>Yalnız profesyonel masaj yapıyoruz.</strong> Uygunsuz bir talepte seansı bitiriyoruz.</p>
       </div>
       <dl class="kural-liste">
-        <div><dt>Terapisti siz seçersiniz</dt><dd>Kadın ya da erkek terapist. Tercihinizi mesajda yazmanız yeterli.</dd></div>
-        <div><dt>Fiyat baştan belli</dt><dd>Listedeki fiyatı ödersiniz; seans sonunda tutara bir şey eklemiyoruz.</dd></div>
-        <div><dt>Ayrı ve temiz oda</dt><dd>Her odada duş var. Çarşafı ve havluyu her seansta değiştiriyoruz.</dd></div>
+        <div><dt>Terapisti siz seçersiniz</dt><dd>Kadın ya da erkek; mesajda yazın.</dd></div>
+        <div><dt>Fiyat baştan belli</dt><dd>Seans sonunda tutara bir şey eklemiyoruz.</dd></div>
+        <div><dt>Ayrı ve temiz oda</dt><dd>Her odada duş; çarşaf ve havlu her seansta yeni.</dd></div>
       </dl>
     </div>
   </section>
@@ -388,7 +391,6 @@ p, dd, li, figcaption, td, th { text-wrap: pretty; }
     <div class="kap">
       <div class="bolum-bas">
         <h2 id="secim-baslik">Hangi masaj size uygun?</h2>
-        <p>Size en yakın olanı seçin; önerimiz, fiyatı ve gönderilecek mesaj yanında çıkar.</p>
       </div>
       <div class="secim">
         <fieldset class="secici">
@@ -483,14 +485,9 @@ p, dd, li, figcaption, td, th { text-wrap: pretty; }
         <figure><img src="https://images.unsplash.com/photo-1787168295699-03aed18d17d4?auto=format&amp;fit=crop&amp;w=600&amp;h=750&amp;q=70" alt="Ahşap zeminde rulo beyaz havlular" width="600" height="750" loading="lazy"><figcaption>Temiz havlular</figcaption></figure>
         <figure><img src="https://images.unsplash.com/photo-1706795033917-dee116e7cba2?auto=format&amp;fit=crop&amp;w=600&amp;h=750&amp;q=70" alt="Katlanmış gri havluların yanında yanan mum" width="600" height="750" loading="lazy"><figcaption>Dinlenme köşesi</figcaption></figure>
       </div>
-    </div>
-  </section>
-
-  <section class="yorum-bolum" id="yorumlar" aria-labelledby="yorumlar-baslik">
-    <div class="kap">
-      <div class="yorum">
+      <div class="yorum" id="yorumlar">
         <div>
-          <h2 id="yorumlar-baslik">Gelenlerin yorumları Google’da</h2>
+          <h3 id="yorumlar-baslik">Gelenlerin yorumları Google’da</h3>
           <p>Yorumları biz seçmiyoruz; hepsini salonun Google profilinde okuyabilirsiniz.</p>
         </div>
         <a class="dugme dugme-ikinci" href="https://www.google.com/maps/search/?api=1&amp;query=Ilg%C4%B1n%20Masaj%20Salonu%20Pamukkale%20Denizli">Google yorumlarını aç</a>
@@ -498,18 +495,15 @@ p, dd, li, figcaption, td, th { text-wrap: pretty; }
     </div>
   </section>
 
+
   <section class="sorular-bolum" id="sorular" aria-labelledby="sorular-baslik">
     <div class="kap">
       <div class="bolum-bas"><h2 id="sorular-baslik">Sık sorulanlar</h2></div>
       <div class="sorular">
-        <div class="soru"><h3>Denizli’de masaj fiyatları ne kadar?</h3><p>Bizde 30 dakikalık refleksoloji 650 ₺, 50 dakikalık İsveç masajı 900 ₺, 80 dakikalık derin doku masajı 1.550 ₺. Bütün fiyatlar yukarıdaki tabloda.</p></div>
-        <div class="soru"><h3>Bir masaj seansı ne kadar sürer?</h3><p>Masaja göre 30 ile 80 dakika. Karşılama, duş ve dinlenmeyle salonda toplam 20 dakika daha kalırsınız.</p></div>
-        <div class="soru"><h3>Fiyata neler dahil, paket var mı?</h3><p>Duş, havlu, terlik, tek kullanımlık iç çamaşırı ve bitki çayı dahil. Paket satmıyoruz; listedeki masaj ve süre ne ise o.</p></div>
-        <div class="soru"><h3>Kadın terapist var mı?</h3><p>Evet, kadın ve erkek terapistimiz var. Tercihinizi randevu mesajına yazın.</p></div>
-        <div class="soru"><h3>Randevusuz gelebilir miyim?</h3><p>Boş oda varsa evet. Beklememek için önce arayın ya da yazın.</p></div>
-        <div class="soru"><h3>Hangi durumlarda masaj yapılmaz?</h3><p>Ateş, yeni ameliyat, açık yara, damar tıkanıklığı ve hamileliğin ilk üç ayında masaj yapmıyoruz. Masaj tıbbi tedavinin yerini tutmaz; emin değilseniz önce doktorunuza danışın.</p></div>
-        <div class="soru"><h3>Nasıl ödeme yapabilirim?</h3><p>Nakit, kredi kartı ya da havale. Ödemeyi seanstan sonra alıyoruz.</p></div>
-        <div class="soru"><h3>Randevumu nasıl iptal ederim?</h3><p>Aynı WhatsApp yazışmasından en az 3 saat önce haber verin. İptal için ücret almıyoruz.</p></div>
+        <div class="soru"><h3>Randevusuz gelebilir miyim?</h3><p>Boş oda varsa evet; beklememek için önce arayın.</p></div>
+        <div class="soru"><h3>Hangi durumlarda masaj yapılmaz?</h3><p>Ateş, yeni ameliyat, açık yara, damar tıkanıklığı ve hamileliğin ilk üç ayında yapmıyoruz. Emin değilseniz doktorunuza danışın.</p></div>
+        <div class="soru"><h3>Nasıl ödeme yapabilirim?</h3><p>Nakit, kart ya da havale; seanstan sonra.</p></div>
+        <div class="soru"><h3>Randevumu nasıl iptal ederim?</h3><p>En az 3 saat önce aynı yazışmadan haber verin; ücret almıyoruz.</p></div>
       </div>
     </div>
   </section>
@@ -519,6 +513,7 @@ p, dd, li, figcaption, td, th { text-wrap: pretty; }
       <div class="konum-metin">
         <h2 id="konum-baslik">Adres ve çalışma saatleri</h2>
         <address>Ilgın Masaj Salonu<br>Örnek Mah. 1. Sk. No: 4<br>Pamukkale, Denizli</address>
+        <p><a class="yol" href="https://www.google.com/maps/search/?api=1&amp;query=Ilg%C4%B1n%20Masaj%20Salonu%20Pamukkale%20Denizli"><svg class="i" aria-hidden="true"><use href="#i-yer"/></svg>Yol tarifi al</a></p>
         <p class="durum" data-durum hidden></p>
         <dl class="ulasim">
           <div><dt>Otopark</dt><dd>Salonun önünde ücretsiz park yeri var.</dd></div>
@@ -527,7 +522,6 @@ p, dd, li, figcaption, td, th { text-wrap: pretty; }
         <div class="konum-eylem">
           <a class="dugme dugme-ana" href="https://wa.me/905550000000?text=Merhaba%2C%20masaj%20randevusu%20almak%20istiyorum."><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp’tan yaz</a>
           <a class="dugme dugme-ikinci" href="tel:+905550000000" aria-label="Telefonla ara: 0 555 000 00 00"><svg class="i" aria-hidden="true"><use href="#i-tel"/></svg>0 555 000 00 00</a>
-          <a class="yol" href="https://www.google.com/maps/search/?api=1&amp;query=Ilg%C4%B1n%20Masaj%20Salonu%20Pamukkale%20Denizli"><svg class="i" aria-hidden="true"><use href="#i-yer"/></svg>Yol tarifi al</a>
         </div>
       </div>
       <table class="saatler">
